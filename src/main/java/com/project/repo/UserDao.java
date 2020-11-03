@@ -6,31 +6,35 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import com.project.model.User;
+import com.project.model.Users;
 import com.project.util.HibernateUtil;
 
-public class UserDao implements DaoContract<User, Integer> {
+public class UserDao implements DaoContract<Users, Integer> {
 
 	@Override
-	public List<User> findAll() {
-		List<User> list = HibernateUtil.getSessionFactory().openSession().createNativeQuery("select * from User", User.class).list();
-		return list;
+	public List<Users> findAll() {
+		List<Users> uList = HibernateUtil.getSessionFactory().openSession().createNativeQuery("select * from users", Users.class).list();
+		return uList;
 	}
-
+	
 	@Override
-	public User findById(Integer i) {
+	public Users findById(Integer i) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public User update(User t) {
-		// TODO Auto-generated method stub
-		return null;
+	public Users update(Users t) {
+		SessionFactory sesfact = HibernateUtil.getSessionFactory();
+		Session sess = sesfact.openSession();
+		Transaction tx = sess.beginTransaction();
+		sess.update(t);
+		tx.commit();
+		return t;
 	}
 
 	@Override
-	public User save(User t) {
+	public Users save(Users t) {
 		SessionFactory sesfact = HibernateUtil.getSessionFactory();
 		Session sess = sesfact.openSession();
 		Transaction tx = sess.beginTransaction();
@@ -40,9 +44,11 @@ public class UserDao implements DaoContract<User, Integer> {
 	}
 
 	@Override
-	public User delete(Integer i) {
-		// TODO Auto-generated method stub
-		return null;
+	public Users delete(Integer i) {
+		Session ses = HibernateUtil.getSessionFactory().openSession();
+		//Needs to delete the profile first followed by the user
+		//HQL
+		return ses.createQuery("delete from users where user_id ='"+i+"'", Users.class).getResultList().get(0);
 	}
 
 }

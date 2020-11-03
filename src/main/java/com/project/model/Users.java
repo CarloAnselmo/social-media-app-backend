@@ -1,6 +1,6 @@
 package com.project.model;
 
-public class User {
+public class Users {
 	
 	private int id;
 	private String username;
@@ -9,11 +9,11 @@ public class User {
 	private String lastname;
 	private String email;
 	
-	public User() {
+	public Users() {
 		super();
 	}
 
-	public User(int id, String username, String password, String firstname, String lastname, String email) {
+	public Users(int id, String username, String password, String firstname, String lastname, String email) {
 		super();
 		this.id = id;
 		this.username = username;
