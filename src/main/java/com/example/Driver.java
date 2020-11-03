@@ -1,16 +1,26 @@
 package com.example;
 
-import com.project.model.User;
+import java.util.HashSet;
+
+import com.project.model.Posts;
+import com.project.model.Users;
 import com.project.repo.UserDao;
 
 public class Driver {
 	
 	public static void main(String[] args) {
-		UserDao ud = new UserDao();
-		User u1 = new User(0,"testman","wasspord","test","man","fake@email.com");
-		ud.save(u1);
-		System.out.println(ud.findAll());
-//		System.out.println(td.findByName("ronald"));
-	}
+		
+		Users u = new Users(0, "cool", "secure", "Tom", "Leonard", "tom@tommy.tom", "http://www.butt.com/", "bored", "I'm cool", "I like cool stuff", new HashSet<>());
+		Posts p1 = new Posts(0, "wowowowowow", u);
+		Posts p2 = new Posts(0, "tehthrhtrh", u);
+		Posts p3 = new Posts(0, "kyuyukyukyuk", u);
+		u.getPosts().add(p1);
+		u.getPosts().add(p2);
+		u.getPosts().add(p3);
+		
+		UserDao uDAO = new UserDao();
+		uDAO.save(u);
+		System.out.println(uDAO.findById(1));
 
+	}
 }

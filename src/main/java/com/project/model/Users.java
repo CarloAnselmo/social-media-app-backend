@@ -1,25 +1,75 @@
 package com.project.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="UserX")
 public class Users {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
+	@Column(nullable = false, unique=true)
 	private String username;
+	
+	@Column(nullable = false)
 	private String password;
+	
+	@Column(nullable = false)
 	private String firstname;
+	
+	@Column(nullable = false)
 	private String lastname;
+	
+	@Column(nullable = false, unique=true)
 	private String email;
 	
+	private String picUrl;
+	
+	private String status;
+	
+	private String bio;
+	
+	private String interests;
+	
+	@OneToMany(mappedBy="users", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	private Set<Posts> posts;
+	
+//  @ManyToMany(mappedBy = "users", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+//  private Set<Users> usersJoin = new HashSet<>();
+
 	public Users() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public Users(String username, String password, String firstname, String lastname, String email) {
+	public Users(int id, String username, String password, String firstname, String lastname, String email,
+			String picUrl, String status, String bio, String interests, Set<Posts> posts) {
 		super();
+		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.email = email;
+		this.picUrl = picUrl;
+		this.status = status;
+		this.bio = bio;
+		this.interests = interests;
+		this.posts = posts;
 	}
 
 	public int getId() {
@@ -70,12 +120,55 @@ public class Users {
 		this.email = email;
 	}
 
+	public String getPicUrl() {
+		return picUrl;
+	}
+
+	public void setPicUrl(String picUrl) {
+		this.picUrl = picUrl;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getBio() {
+		return bio;
+	}
+
+	public void setBio(String bio) {
+		this.bio = bio;
+	}
+
+	public String getInterests() {
+		return interests;
+	}
+
+	public void setInterests(String interests) {
+		this.interests = interests;
+	}
+
+	public Set<Posts> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(Set<Posts> posts) {
+		this.posts = posts;
+	}
+
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", firstname=" + firstname
-				+ ", lastname=" + lastname + ", email=" + email + "]";
+		return "Users [id=" + id + ", username=" + username + ", password=" + password + ", firstname=" + firstname
+				+ ", lastname=" + lastname + ", email=" + email + ", picUrl=" + picUrl + ", status=" + status + ", bio="
+				+ bio + ", interests=" + interests + ", posts=" + posts + "]";
 	}
-	
-	
 
+
+	
+	
+	
 }
