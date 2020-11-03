@@ -1,0 +1,29 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0/EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.example.model">
+	<class name="User">
+		<!-- Primary key -->
+		<id name="id" type="int" column="t_id">
+			<generator class="native"></generator>
+		</id>
+
+		<!-- Properties -->
+		<property name="username" type="string">
+			<column name="t_username" not-null="true" unique="true" />
+		</property>
+
+		<property name="password" type="string">
+			<column name="t_password" not-null="true" />
+		</property>
+
+		<property name="firstname" type="string" column="t_firstname" />
+		<property name="lastname" type="string" column="t_lastname" />
+
+		<property name="email" type="string">
+			<column name="t_email" not-null="true" />
+		</property>
+
+	</class>
+</hibernate-mapping>
