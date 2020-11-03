@@ -1,0 +1,34 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+	<session-factory>
+		<property name="hibernate.connection.username">admi</property>
+		<property name="hibernate.connection.password">secure</property>
+		<!-- <property name="hibernate.connection.url">jdbc:postgresql://project0.c59oarwg7xwr.us-east-2.rds.amazonaws.com:5432/postgres?currentSchema=social</property> -->
+		<property name="hibernate.connection.url">jdbc:postgresql://project0.c59oarwg7xwr.us-east-2.rds.amazonaws.com:5432/postgres</property>
+
+		<property name="hibernate.connection.driver.class">org.postgresql.Driver</property>
+		<property name="hibernate.default_schema">social</property> <!-- public is default already -->
+
+		<!-- Additional hibernate configurations below -->
+
+		<!-- Hibernate should detect this automatically, but good to put anyway -->
+		<property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+		<!-- If hibernate should print the sql queries to the console or log file 
+			if configured (good for dev) -->
+		<property name="hibernate.connection.show_sql">true</property>
+		<!-- This is the optino for if you want hibernate to make the printed SQL 
+			pretty -->
+		<property name="hibernate.connection.formal_sql">true</property>
+		<!-- This is the connection pool size for hibernate -->
+		<property name="hibernate.connection.pool_size">10</property>
+		<!-- Hibernate mapping to data definition language -->
+		<property name="hibernate.hbm2ddl.auto">create</property>
+		<mapping resource="hibernate.hbm.xml" />
+
+	</session-factory>
+
+</hibernate-configuration>
