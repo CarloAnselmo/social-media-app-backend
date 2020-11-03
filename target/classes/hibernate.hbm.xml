@@ -5,6 +5,7 @@
 <hibernate-mapping package="com.project.model">
 	
 	<class name="Users">
+    
 		<!-- Primary key -->
 		<id name="id" type="serial" column="user_id">
 			<generator class="assigned"></generator>
