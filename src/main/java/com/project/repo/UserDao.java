@@ -13,8 +13,8 @@ public class UserDao implements DaoContract<User, Integer> {
 
 	@Override
 	public List<User> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		List<User> list = HibernateUtil.getSessionFactory().openSession().createNativeQuery("select * from User", User.class).list();
+		return list;
 	}
 
 	@Override
@@ -33,8 +33,8 @@ public class UserDao implements DaoContract<User, Integer> {
 	public User save(User t) {
 		SessionFactory sesfact = HibernateUtil.getSessionFactory();
 		Session sess = sesfact.openSession();
-		Transaction tx = sess.beginTransaction();	// Open up a transaction block, perform operation, then commit
-		sess.save(t);		// Since we've already told hibernate the mappings, it should know how to do this part
+		Transaction tx = sess.beginTransaction();
+		sess.save(t);
 		tx.commit();
 		return t;
 	}
