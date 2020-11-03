@@ -39,7 +39,7 @@ public class UserDao implements DaoContract<Users, Integer> {
 	@Override
 	public Users save(Users t) {
 		//create blank profile before you add users
-		Profiles blank = new Profiles(0, "no-pic", "I'm boring", "No bio", "No interests");
+		Profiles blank = new Profiles("no-pic", "I'm boring", "No bio", "No interests");
 		pDAO.save(blank);
 		
 		SessionFactory sesfact = HibernateUtil.getSessionFactory();

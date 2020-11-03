@@ -8,8 +8,8 @@ public class Driver {
 	public static void main(String[] args) {
 		UserDao uDAO = new UserDao();
 		
-		Users u1 = new Users(0, "Dude", "secure", "Dingy", "Wingy", "dingywingus@gmail.com");
-		Users u2 = new Users(0, "Shrude", "pass", "Shrewy", "Blewy", "shrewmydewd@gmail.com");
+		Users u1 = new Users("Dude", "secure", "Dingy", "Wingy", "dingywingus@gmail.com");
+		Users u2 = new Users("Shrude", "pass", "Shrewy", "Blewy", "shrewmydewd@gmail.com");
 		
 		uDAO.save(u1);
 		uDAO.save(u2);

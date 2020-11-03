@@ -13,9 +13,8 @@ public class Profiles {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Profiles(int id, String picUrl, String status, String bio, String interests) {
+	public Profiles(String picUrl, String status, String bio, String interests) {
 		super();
-		this.id = id;
 		this.picUrl = picUrl;
 		this.status = status;
 		this.bio = bio;

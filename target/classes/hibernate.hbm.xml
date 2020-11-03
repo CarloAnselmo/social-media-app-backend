@@ -6,8 +6,8 @@
 	
 	<class name="Users">
 		<!-- Primary key -->
-		<id name="id" type="int" column="user_id">
-			<generator class="native"></generator>
+		<id name="id" type="serial" column="user_id">
+			<generator class="assigned"></generator>
 		</id>
 
 		<!-- Properties -->
@@ -31,7 +31,7 @@
 	<class name="Profiles">
 		<!-- Primary key -->
 		<id name="id" type="int" column="profile_id">
-			<generator class="native"></generator>
+			<!-- <generator class="native"></generator>  -->
 		</id>
 
 		<!-- Properties -->
