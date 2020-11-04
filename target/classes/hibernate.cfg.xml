@@ -7,7 +7,8 @@
 	<session-factory>
 		<property name="hibernate.connection.username">admi</property>
 		<property name="hibernate.connection.password">secure</property>
-		<property name="hibernate.connection.url">jdbc:postgresql://project0.c59oarwg7xwr.us-east-2.rds.amazonaws.com:5432/postgres?currentSchema=social</property>
+		<!-- <property name="hibernate.connection.url">jdbc:postgresql://project0.c59oarwg7xwr.us-east-2.rds.amazonaws.com:5432/postgres?currentSchema=social</property> -->
+		<property name="hibernate.connection.url">jdbc:postgresql://project0.c59oarwg7xwr.us-east-2.rds.amazonaws.com:5432/postgres</property>
 
 		<property name="hibernate.connection.driver.class">org.postgresql.Driver</property>
 		<property name="hibernate.default_schema">social</property> <!-- public is default already -->
@@ -26,9 +27,15 @@
 		<property name="hibernate.connection.pool_size">10</property>
 		<!-- Hibernate mapping to data definition language -->
 		<property name="hibernate.hbm2ddl.auto">none</property>
+<<<<<<< HEAD
 		
 		<mapping class="com.hibernate.model.Users" />
 		
+=======
+		<mapping class="com.project.model.Users"/>
+		<mapping class="com.project.model.Posts"/>
+
+>>>>>>> origin/main
 	</session-factory>
 
 </hibernate-configuration>
