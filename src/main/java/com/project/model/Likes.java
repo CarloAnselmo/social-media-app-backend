@@ -1,84 +1,63 @@
 package com.project.model;
 
-import java.io.Serializable;
-
-import javax.persistence.Embeddable;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 
-@Embeddable
-@Table(name="LikeX")
-public class Likes implements Serializable {
+@Entity
+@Table(name="LikeY")
+public class Likes {
 	
+	@EmbeddedId
+	LikesKey id;
 	
-	private int user_id;
+	@ManyToOne
+	@MapsId("userId")
+	@JoinColumn(name="user_id")
+	private Users user;
 	
-	
-	private int post_id;
-
+	@ManyToOne
+	@MapsId("postId")
+	@JoinColumn(name="post_id")
+	private Posts post;
 
 	public Likes() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-
-	public Likes(int user_id, int post_id) {
+	public Likes(LikesKey id, Users user, Posts post) {
 		super();
-		this.user_id = user_id;
-		this.post_id = post_id;
+		this.id = id;
+		this.user = user;
+		this.post = post;
 	}
 
-
-	public int getUser_id() {
-		return user_id;
+	public LikesKey getId() {
+		return id;
 	}
 
-
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public void setId(LikesKey id) {
+		this.id = id;
 	}
 
-
-	public int getPost_id() {
-		return post_id;
+	public Users getUser() {
+		return user;
 	}
 
-
-	public void setPost_id(int post_id) {
-		this.post_id = post_id;
+	public void setUser(Users user) {
+		this.user = user;
 	}
 
-
-	@Override
-	public String toString() {
-		return "Likes [user_id=" + user_id + ", post_id=" + post_id + "]";
+	public Posts getPost() {
+		return post;
 	}
 
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + post_id;
-		result = prime * result + user_id;
-		return result;
-	}
-
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Likes other = (Likes) obj;
-		if (post_id != other.post_id)
-			return false;
-		if (user_id != other.user_id)
-			return false;
-		return true;
+	public void setPost(Posts post) {
+		this.post = post;
 	}
 	
 	

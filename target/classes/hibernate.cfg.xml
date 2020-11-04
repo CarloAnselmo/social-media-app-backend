@@ -26,7 +26,7 @@
 		<!-- This is the connection pool size for hibernate -->
 		<property name="hibernate.connection.pool_size">10</property>
 		<!-- Hibernate mapping to data definition language -->
-		<property name="hibernate.hbm2ddl.auto">create</property>
+		<property name="hibernate.hbm2ddl.auto">none</property>
 		<mapping class="com.project.model.Users"/>
 		<mapping class="com.project.model.Posts"/>
 
