@@ -28,23 +28,4 @@
 
 	</class>
 	
-	<class name="Profiles">
-		<!-- Primary key -->
-		<id name="id" type="int" column="profile_id">
-			<!-- <generator class="native"></generator>  -->
-		</id>
-
-		<!-- Properties -->
-		<property name="picUrl" type="string">
-			<column name="pic" />
-		</property>
-
-		<property name="status" type="string">
-			<column name="status" />
-		</property>
-
-		<property name="bio" type="string" column="bio" />
-		<property name="interests" type="string" column="interests" />
-
-	</class>
 </hibernate-mapping>

@@ -7,9 +7,9 @@
 	<version>0</version>
 	<packaging>war</packaging>
 	 
-	 <build>
+	<build>
 	 	<finalName>${project.name}</finalName>
-	 </build>
+	</build>
 	 
 	
 	<properties>
