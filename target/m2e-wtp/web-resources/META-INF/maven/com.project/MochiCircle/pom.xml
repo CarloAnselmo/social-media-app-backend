@@ -3,8 +3,15 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.project</groupId>
-	<artifactId>social-media-app-backend</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>MochiCircle</artifactId>
+	<version>0</version>
+	<packaging>war</packaging>
+	 
+	 <build>
+	 	<finalName>${project.name}</finalName>
+	 </build>
+	 
+	
 	<properties>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.source>1.8</maven.compiler.source>
@@ -12,6 +19,13 @@
 
 	<dependencies>
 
+      	<!-- https://mvnrepository.com/artifact/log4j/log4j -->
+	<dependency>
+    	<groupId>log4j</groupId>
+    	<artifactId>log4j</artifactId>
+    	<version>1.2.17</version>
+	</dependency>
+	
 		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
@@ -25,6 +39,21 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>5.4.22.Final</version>
 		</dependency>
+
+	<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+    <version>2.11.2</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+<dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>javax.servlet-api</artifactId>
+    <version>3.1.0</version>
+    <scope>provided</scope>
+</dependency>
 
 	</dependencies>
 
