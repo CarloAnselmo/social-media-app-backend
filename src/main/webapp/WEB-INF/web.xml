@@ -1,9 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
   <display-name>MochiCircle</display-name>
+  
+   <!-- Needed to have the listener -->
+  <listener>
+  	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  
+  <!-- Registering Springs dispatcher servlet with our application -->
   <servlet>
+  	<servlet-name>dispatcher</servlet-name>
+  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>dispatcher</servlet-name>
+  	<url-pattern>*.json</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Used with data servlet which we probably won't need anymore -->
+   <servlet>
     <servlet-name>data</servlet-name>
     <servlet-class>com.project.serv.DataServlet</servlet-class>
   </servlet>
+  
+  <error-page>
+  	<error-code>404</error-code>
+  	<location>/html/error.html</location>
+  </error-page>
   
 </web-app>

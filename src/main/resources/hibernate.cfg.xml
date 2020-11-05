@@ -27,15 +27,10 @@
 		<property name="hibernate.connection.pool_size">10</property>
 		<!-- Hibernate mapping to data definition language -->
 		<property name="hibernate.hbm2ddl.auto">none</property>
-<<<<<<< HEAD
-		
-		<mapping class="com.hibernate.model.Users" />
-		
-=======
+
 		<mapping class="com.project.model.Users"/>
 		<mapping class="com.project.model.Posts"/>
 
->>>>>>> origin/main
 	</session-factory>
 
 </hibernate-configuration>

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name="data", urlPatterns = {"*.json"})
+@WebServlet(name="data", urlPatterns = {"*.data"})
 public class DataServlet extends HttpServlet{
 
 	private RequestForwarder reqF = new RequestForwarder();
