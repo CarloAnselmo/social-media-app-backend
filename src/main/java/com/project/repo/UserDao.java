@@ -5,19 +5,19 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Repository;
 
 import com.project.model.Users;
 import com.project.util.HibernateUtil;
 
-public class UserDao implements DaoContract<Users, Integer> {
+@Repository
+public class UserDao {
 
-	@Override
 	public List<Users> findAll() {
 		List<Users> uList = HibernateUtil.getSessionFactory().openSession().createNativeQuery("select * from users", Users.class).list();
 		return uList;
 	}
 	
-	@Override
 	public Users findById(Integer i) {
 		Session sess = HibernateUtil.getSessionFactory().openSession();
 //		Transaction tx = sess.beginTransaction();
@@ -25,7 +25,6 @@ public class UserDao implements DaoContract<Users, Integer> {
 		return u;
 	}
 
-	@Override
 	public Users update(Users t) {
 		SessionFactory sesfact = HibernateUtil.getSessionFactory();
 		Session sess = sesfact.openSession();
@@ -35,7 +34,6 @@ public class UserDao implements DaoContract<Users, Integer> {
 		return t;
 	}
 
-	@Override
 	public Users save(Users t) {
 //		//create blank profile before you add users
 //		Profiles blank = new Profiles("no-pic", "I'm boring", "No bio", "No interests");
@@ -48,7 +46,6 @@ public class UserDao implements DaoContract<Users, Integer> {
 		
 	}
 
-	@Override
 	public Users delete(Integer i) {
 		//Session ses = HibernateUtil.getSessionFactory().openSession();
 		//Needs to delete the profile first followed by the user
