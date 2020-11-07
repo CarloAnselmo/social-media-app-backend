@@ -1,7 +1,10 @@
 package com.project.service;
 
+<<<<<<< HEAD
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+=======
+>>>>>>> f277b739f40939127e7de9b98634f5a5765ce729
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.project.model.Users;
 import com.project.repo.UserDao;
 
+<<<<<<< HEAD
 @Service
 public class UserService {
 
@@ -70,4 +74,33 @@ public class UserService {
 		}
 		return sb.toString();
 	}
+=======
+@Service(value="userservice")
+public class UserService {
+
+	@Autowired
+	private UserDao udao;
+
+	public UserService() {
+		super();
+	}
+	
+	public UserService(UserDao udao) {
+		super();
+		this.udao = udao;
+	}
+	
+	public UserDao getUdao() {
+		return udao;
+	}
+
+	public void setUdao(UserDao udao) {
+		this.udao = udao;
+	}
+
+	public List<Users> getAllUsers() {
+		return udao.findAll();
+	}
+
+>>>>>>> f277b739f40939127e7de9b98634f5a5765ce729
 }

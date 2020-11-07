@@ -2,7 +2,11 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
+<<<<<<< HEAD
 	xmlns:context="http://www.springframework.org/schema/context"
+=======
+	xmlns:cnx="http://www.springframework.org/schema/context"
+>>>>>>> f277b739f40939127e7de9b98634f5a5765ce729
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	https://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/mvc
@@ -10,8 +14,16 @@
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context.xsd
 	">
+<<<<<<< HEAD
 
 	<context:component-scan base-package="com.project" />
 	<mvc:annotation-driven />
 	
 </beans>
+=======
+	
+	<cnx:component-scan base-package="com.project"/>
+	<mvc:annotation-driven/>
+	
+	</beans>
+>>>>>>> f277b739f40939127e7de9b98634f5a5765ce729

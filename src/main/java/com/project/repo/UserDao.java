@@ -12,22 +12,27 @@ import com.project.model.Users;
 import com.project.util.HibernateUtil;
 
 @Repository
+<<<<<<< HEAD
 public class UserDao implements DaoContract<Users, Integer> {
 
 
 	@Override
+=======
+public class UserDao {
+
+>>>>>>> f277b739f40939127e7de9b98634f5a5765ce729
 	public List<Users> findAll() {
 		List<Users> uList = HibernateUtil.getSessionFactory().openSession().createNativeQuery("select * from users", Users.class).list();
 		return uList;
 	}
 	
-	@Override
 	public Users findById(Integer i) {
 		Session sess = HibernateUtil.getSessionFactory().openSession();
 		Users u = sess.get(Users.class, i);
 		return u;
 	}
 
+<<<<<<< HEAD
 	public Users findByCredentials(String username, String password)
 	{
 		Session ses = HibernateUtil.getSessionFactory().openSession();
@@ -44,6 +49,8 @@ public class UserDao implements DaoContract<Users, Integer> {
 	}
 	
 	@Override
+=======
+>>>>>>> f277b739f40939127e7de9b98634f5a5765ce729
 	public Users update(Users t) {
 		SessionFactory sesfact = HibernateUtil.getSessionFactory();
 		Session sess = sesfact.openSession();
@@ -53,7 +60,6 @@ public class UserDao implements DaoContract<Users, Integer> {
 		return t;
 	}
 
-	@Override
 	public Users save(Users t) {
 		SessionFactory sesfact = HibernateUtil.getSessionFactory();
 		Session sess = sesfact.openSession();
@@ -64,7 +70,6 @@ public class UserDao implements DaoContract<Users, Integer> {
 		
 	}
 
-	@Override
 	public Users delete(Integer i) {
 		//Session ses = HibernateUtil.getSessionFactory().openSession();
 		//Needs to delete the profile first followed by the user
