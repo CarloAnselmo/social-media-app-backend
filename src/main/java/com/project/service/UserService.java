@@ -55,10 +55,22 @@ public class UserService {
 	}
 	
 	public Users validateLogin(String username, String pass) {
+		//hashing the password formula
+		
 		Users temp = udao.findByUsernamePass(username, pass);
 		temp.setPassword(null);
 		temp.setPosts(null);
 		temp.setLikedPosts(null);
+		return temp;
+	}
+	
+	public Users createUser(String username, String pass, String firstName, String lastName,
+			String email) {
+		Users temp = new Users(0, username, pass, firstName, lastName, email,
+				"https://lh3.googleusercontent.com/-A4A1LeF0JkU/WYtlfnSNNDI/AAAAAAAAGOg/"
+				+"NAZQvaeEkLIqd40OCaVSiHJ7Rr9ZV6ZIwCHMYCw/s5000/%255BUNSET%255D","N/A","N/A","N/A",
+				null, null);
+				udao.save(temp);
 		return temp;
 	}
 

@@ -51,5 +51,10 @@ public class UserController {
 	public @ResponseBody Users validateUser(@PathVariable String username, @PathVariable String password) {
 		return us.validateLogin(username, password);
 	}
+	@GetMapping("/create/{username}+{password}+{firstname}+{lastname}+{email}")
+	public @ResponseBody Users validateUser(@PathVariable String username, @PathVariable String pass, 
+			@PathVariable String firstName, @PathVariable String lastName, @PathVariable String email) {
+		return us.createUser(username, pass, firstName, lastName, email);
+	}
 
 }
