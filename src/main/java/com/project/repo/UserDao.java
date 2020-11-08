@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.project.model.Users;
-import com.project.util.HibernateUtil;
 
 @Repository
 @Transactional
@@ -52,8 +51,7 @@ public class UserDao {
 //	}
 
 	public Users update(Users t) {
-		SessionFactory sesfact = HibernateUtil.getSessionFactory();
-		Session sess = sesfact.openSession();
+		Session sess = sessfact.openSession();
 		Transaction tx = sess.beginTransaction();
 		sess.update(t);
 		tx.commit();
