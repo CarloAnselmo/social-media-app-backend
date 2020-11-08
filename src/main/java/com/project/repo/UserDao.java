@@ -32,22 +32,20 @@ public class UserDao {
 //	}
 	
 	public List<Users> findAll() {
-		return sessfact.openSession().createQuery("from Users", Users.class).list();
+		return sessfact.getCurrentSession().createQuery("from Users", Users.class).list();
 	}
 	
 	public Users findById(int id) {
-		return sessfact.openSession().get(Users.class, id);
+		return sessfact.getCurrentSession().get(Users.class, id);
 	}
 	
 	public Users findByUsernamePass(String username, String pass) {
-		return sessfact.openSession().createQuery("from Users where username = '"+username+"' and password = '"+pass+"'", Users.class).list().get(0);
+		return sessfact.getCurrentSession().createQuery("from Users where username = '"+username+"' and password = '"+pass+"'", Users.class).list().get(0);
 	}
 
 	public Users update(Users t) {
-		Session sess = sessfact.openSession();
-		Transaction tx = sess.beginTransaction();
+		Session sess = sessfact.getCurrentSession();
 		sess.update(t);
-		tx.commit();
 		return t;
 	}
 
@@ -64,10 +62,8 @@ public class UserDao {
 	
 	public void save(Users c) {
 //		sessfact.getCurrentSession().save(c);
-		Session sess = sessfact.openSession();
-		Transaction tx = sess.beginTransaction();
+		Session sess = sessfact.getCurrentSession();
 		sess.save(c);
-		tx.commit();
 	}
 	
 	
