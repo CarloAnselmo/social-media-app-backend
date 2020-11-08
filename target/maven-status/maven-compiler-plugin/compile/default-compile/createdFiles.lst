@@ -1,4 +1,3 @@
-com\project\model\Likes.class
 com\project\service\UserService.class
 com\project\repo\UserDao.class
 com\project\controller\ServletDataController.class
@@ -6,7 +5,6 @@ com\project\util\HibernateUtil.class
 com\project\model\Posts.class
 com\project\model\Users.class
 com\project\serv\DataServlet.class
-com\project\model\LikesKey.class
 com\project\serv\RequestForwarder.class
 com\project\controller\UserController.class
 com\project\controller\ViewController.class

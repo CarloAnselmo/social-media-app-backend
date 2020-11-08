@@ -34,5 +34,13 @@ public class UserService {
 	public List<Users> getAllUsers() {
 		return udao.findAll();
 	}
+	
+	public Users findUserNoPass(int id) {
+		Users temp = udao.findById(id);
+		temp.setEmail(null);
+		temp.setUsername(null);
+		temp.setPassword(null);
+		return temp;
+	}
 
 }

@@ -14,7 +14,7 @@ import com.project.service.UserService;
 
 @Controller
 @CrossOrigin // Injects the header, allows requests from this origin. Can also use wildcards
-@RequestMapping("/users.app")
+@RequestMapping("/users")
 public class UserController {
 	
 	private UserService us;
@@ -39,6 +39,11 @@ public class UserController {
 	@GetMapping
 	public @ResponseBody List<Users> getAll() {
 		return us.getAllUsers();
+	}
+	
+	@GetMapping("/{id}")
+	public @ResponseBody Users findUserNoPass(int id) {
+		return us.findUserNoPass(id);
 	}
 
 }
