@@ -1,13 +1,17 @@
 package com.project.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.model.Users;
@@ -56,6 +60,13 @@ public class UserController {
 	public @ResponseBody Users validateUser(@PathVariable String username, @PathVariable String pass,
 			@PathVariable String firstName, @PathVariable String lastName, @PathVariable String email) {
 		return us.createUser(username, pass, firstName, lastName, email);
+	}
+	
+	@PostMapping("/status")
+	public @ResponseBody String updateStatus(@RequestBody Map<String, String> json) {
+		int userId = Integer.parseInt(json.get("userId"));
+		String status = json.get("status");
+		return us.updateUserStatus(userId, status);
 	}
 
 	@GetMapping("/updateBasic/{id}+{username}+{firstname}+{lastname}")

@@ -3,8 +3,6 @@ package com.project.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
 import com.project.model.Users;
@@ -86,6 +84,13 @@ public class UserService {
 		temp.setBio(null);
 		temp.setEmail(null);
 		return udao.update(temp);
+	}
+	
+	public String updateUserStatus(int id, String newStatus) {
+		Users u = udao.findById(id);
+		u.setStatus(newStatus);
+		Users nu = udao.update(u);
+		return nu.getStatus();
 	}
 
 }
