@@ -17,7 +17,7 @@
                         
         
         <property name="java-output-path" value="/Project-2-Backend/target/classes"/>
-        <property name="context-root" value="MochiCircle"/>
+        <property name="context-root" value="${project.name}"/>
                     
     
     </wb-module>
