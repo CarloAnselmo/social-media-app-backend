@@ -21,12 +21,12 @@ public class Driver {
 		
 //		PostDao pDAO = new PostDao();
 		
-		ApplicationContext ac = new ClassPathXmlApplicationContext("beanConfig.xml");
+		ApplicationContext ac = new ClassPathXmlApplicationContext("testBeans.xml");
 		UserDao uDAO = ac.getBean(UserDao.class);
 		Users u1 = new Users(0, "tyj", "tyh", "rth", "rth", "hm@asd.asdm", "http://www.hm.com/", "qwe", "I'm qwe", "I qwe qwe stuff", new HashSet<>(), new HashSet<>());
 //		uDAO.save(u1);
-//		System.out.println(uDAO.findAll());
-		System.out.println(uDAO.findByUsernamePass("ye", "ye"));
+		System.out.println(uDAO.findAll());
+//		System.out.println(uDAO.findByUsernamePass("ye", "ye"));
 //		System.out.println(uDAO.findById(1));
 		
 //		uDAO.save(u2);
