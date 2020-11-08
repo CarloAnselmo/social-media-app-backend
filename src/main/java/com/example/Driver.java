@@ -23,16 +23,15 @@ public class Driver {
 		
 		ApplicationContext ac = new ClassPathXmlApplicationContext("beanConfig.xml");
 		UserDao uDAO = ac.getBean(UserDao.class);
-		Users u1 = new Users(0, "qwe", "qwe", "qwe", "qwe", "qwe@asd.asdm", "http://www.qwe.com/", "qwe", "I'm qwe", "I qwe qwe stuff", new HashSet<>(), new HashSet<>());
+		Users u1 = new Users(0, "tyj", "tyh", "rth", "rth", "hm@asd.asdm", "http://www.hm.com/", "qwe", "I'm qwe", "I qwe qwe stuff", new HashSet<>(), new HashSet<>());
 //		uDAO.save(u1);
-		System.out.println(uDAO.findAll());
+//		System.out.println(uDAO.findAll());
 		System.out.println(uDAO.findByUsernamePass("ye", "ye"));
 //		System.out.println(uDAO.findById(1));
 		
 //		uDAO.save(u2);
 //		pDAO.save(p1);
 //		pDAO.save(p2);
-		
 		
 //		ApplicationContext ac = new ClassPathXmlApplicationContext("beanConfig.xml");
 //		UserService us = ac.getBean(UserService.class, "userservice");

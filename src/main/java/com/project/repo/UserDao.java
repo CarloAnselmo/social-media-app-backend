@@ -42,13 +42,6 @@ public class UserDao {
 	public Users findByUsernamePass(String username, String pass) {
 		return sessfact.openSession().createQuery("from Users where username = '"+username+"' and password = '"+pass+"'", Users.class).list().get(0);
 	}
-	
-//	public Users findById(Integer i) {
-//		Session sess = HibernateUtil.getSessionFactory().openSession();
-////		Transaction tx = sess.beginTransaction();
-//		Users u = sess.get(Users.class, i);
-//		return u;
-//	}
 
 	public Users update(Users t) {
 		Session sess = sessfact.openSession();

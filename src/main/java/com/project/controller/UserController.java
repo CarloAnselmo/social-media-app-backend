@@ -42,9 +42,14 @@ public class UserController {
 		return us.getAllUsers();
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/find/{id}")
 	public @ResponseBody Users findUserNoPass(@PathVariable int id) {
 		return us.findUserNoPass(id);
+	}
+	
+	@GetMapping("/validate/{username}+{password}")
+	public @ResponseBody Users validateUser(@PathVariable String username, @PathVariable String password) {
+		return us.validateLogin(username, password);
 	}
 
 }

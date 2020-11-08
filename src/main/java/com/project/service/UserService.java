@@ -42,6 +42,16 @@ public class UserService {
 		temp.setEmail(null);
 		temp.setUsername(null);
 		temp.setPassword(null);
+		temp.setPosts(null);
+		temp.setLikedPosts(null);
+		return temp;
+	}
+	
+	public Users validateLogin(String username, String pass) {
+		Users temp = udao.findByUsernamePass(username, pass);
+		temp.setPassword(null);
+		temp.setPosts(null);
+		temp.setLikedPosts(null);
 		return temp;
 	}
 
