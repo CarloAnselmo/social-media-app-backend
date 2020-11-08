@@ -3,16 +3,24 @@ package com.project.repo;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.project.model.Posts;
 import com.project.model.Users;
-import com.project.util.HibernateUtil;
 
 public class PostDao {
 
+	private SessionFactory sessfact;
+	
+	@Autowired
+	public PostDao(SessionFactory sessfact) {
+		this.sessfact = sessfact;
+	}
+	
 	public List<Posts> findAll() {
-		List<Posts> pList = HibernateUtil.getSessionFactory().openSession().createNativeQuery("select * from users", Posts.class).list();
+		List<Posts> pList = sessfact.openSession().createNativeQuery("select * from users", Posts.class).list();
 		return pList;
 	}
 
@@ -27,7 +35,7 @@ public class PostDao {
 	}
 
 	public Posts save(Posts t) {
-		Session sess = HibernateUtil.getSessionFactory().openSession();
+		Session sess = sessfact.openSession();
 		Transaction tx = sess.beginTransaction();
 		sess.persist(t);
 		tx.commit();
