@@ -16,7 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Users")
+@Table(name="users")
 public class Users {
 	
 	@Id
@@ -42,6 +42,7 @@ public class Users {
 	
 	private String status;
 	
+	@Column(name="bio")
 	private String bio;
 	
 	private String interests;
