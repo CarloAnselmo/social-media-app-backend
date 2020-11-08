@@ -17,9 +17,9 @@ import com.project.service.UserService;
 @CrossOrigin // Injects the header, allows requests from this origin. Can also use wildcards
 @RequestMapping("/users")
 public class UserController {
-	
+
 	private UserService us;
-	
+
 	public UserController() {
 	}
 
@@ -27,7 +27,7 @@ public class UserController {
 		super();
 		this.us = us;
 	}
-	
+
 	public UserService getUsers() {
 		return us;
 	}
@@ -41,20 +41,32 @@ public class UserController {
 	public @ResponseBody List<Users> getAll() {
 		return us.getAllUsers();
 	}
-	
+
 	@GetMapping("/find/{id}")
 	public @ResponseBody Users findUserNoPass(@PathVariable int id) {
 		return us.findUserNoPass(id);
 	}
-	
+
 	@GetMapping("/validate/{username}+{password}")
 	public @ResponseBody Users validateUser(@PathVariable String username, @PathVariable String password) {
 		return us.validateLogin(username, password);
 	}
+
 	@GetMapping("/create/{username}+{password}+{firstname}+{lastname}+{email}")
-	public @ResponseBody Users validateUser(@PathVariable String username, @PathVariable String pass, 
+	public @ResponseBody Users validateUser(@PathVariable String username, @PathVariable String pass,
 			@PathVariable String firstName, @PathVariable String lastName, @PathVariable String email) {
 		return us.createUser(username, pass, firstName, lastName, email);
+	}
+
+	@GetMapping("/updateBasic/{id}+{username}+{firstname}+{lastname}")
+	public @ResponseBody Users updateBasicInfo(@PathVariable int id, @PathVariable String username,
+			@PathVariable String firstname, @PathVariable String lastname) {
+		Users temp = new Users();
+		temp.setId(id);
+		temp.setUsername(username);
+		temp.setFirstname(firstname);
+		temp.setLastname(lastname);
+		return us.updateBasicInfo(temp);
 	}
 
 }

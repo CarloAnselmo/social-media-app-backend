@@ -70,8 +70,6 @@ public class UserDao {
 		tx.commit();
 	}
 	
-	
-
 	public Users delete(Integer i) {
 		//Session ses = HibernateUtil.getSessionFactory().openSession();
 		//Needs to delete the profile first followed by the user

@@ -44,6 +44,13 @@ public class UserService {
 		return temp;
 	}
 	
+	public Users findFullUser(int id) {
+		Users temp = udao.findById(id);
+		temp.setPosts(null);
+		temp.setLikedPosts(null);
+		return temp;
+	}
+	
 	public Users findUserNoPass(int id) {
 		Users temp = udao.findById(id);
 		temp.setEmail(null);
@@ -72,6 +79,13 @@ public class UserService {
 				null, null);
 				udao.save(temp);
 		return temp;
+	}
+	
+	public Users updateBasicInfo(Users t) {
+		Users temp = t;
+		temp.setBio(null);
+		temp.setEmail(null);
+		return udao.update(temp);
 	}
 
 }
