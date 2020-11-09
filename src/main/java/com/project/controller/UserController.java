@@ -21,9 +21,9 @@ import com.project.service.UserService;
 @CrossOrigin // Injects the header, allows requests from this origin. Can also use wildcards
 @RequestMapping("/users")
 public class UserController {
-	
+
 	private UserService us;
-	
+
 	public UserController() {
 	}
 
@@ -31,7 +31,7 @@ public class UserController {
 		super();
 		this.us = us;
 	}
-	
+
 	public UserService getUsers() {
 		return us;
 	}
@@ -45,18 +45,19 @@ public class UserController {
 	public @ResponseBody List<Users> getAll() {
 		return us.getAllUsers();
 	}
-	
+
 	@GetMapping("/find/{id}")
 	public @ResponseBody Users findUserNoPass(@PathVariable int id) {
 		return us.findUserNoPass(id);
 	}
-	
+
 	@GetMapping("/validate/{username}+{password}")
 	public @ResponseBody Users validateUser(@PathVariable String username, @PathVariable String password) {
 		return us.validateLogin(username, password);
 	}
+
 	@GetMapping("/create/{username}+{password}+{firstname}+{lastname}+{email}")
-	public @ResponseBody Users validateUser(@PathVariable String username, @PathVariable String pass, 
+	public @ResponseBody Users validateUser(@PathVariable String username, @PathVariable String pass,
 			@PathVariable String firstName, @PathVariable String lastName, @PathVariable String email) {
 		return us.createUser(username, pass, firstName, lastName, email);
 	}
@@ -66,6 +67,67 @@ public class UserController {
 		int userId = Integer.parseInt(json.get("userId"));
 		String status = json.get("status");
 		return us.updateUserStatus(userId, status);
+	}
+
+	@PostMapping("/updateBasic")
+	public @ResponseBody Users updateBasicInfo(@RequestBody Map<String, String> json) {
+		int userId = Integer.parseInt(json.get("userId"));
+		String username = json.get("username");
+		String firstname = json.get("firstName");
+		String lastname = json.get("lastName");
+		
+		Users removeRecursion = us.updateBasicInfo(userId, username, firstname, lastname);
+		removeRecursion.setPosts(null);
+		removeRecursion.setLikedPosts(null);
+		return removeRecursion;
+	}
+	
+	// This one will probably need to be changed when email feature is added
+	@PostMapping("/updateEmail")
+	public @ResponseBody Users updateEmail(@RequestBody Map<String, String> json) {
+		int userId = Integer.parseInt(json.get("userId"));
+		String email = json.get("email");
+		
+		Users removeRecursion = us.updateEmail(userId, email);
+		removeRecursion.setPosts(null);
+		removeRecursion.setLikedPosts(null);
+		return removeRecursion;
+	}
+	
+	// This one will probably need to be changed when we figure out images
+	@PostMapping("/updatePic")
+	public @ResponseBody Users updateProfilePic(@RequestBody Map<String, String> json) {
+		int userId = Integer.parseInt(json.get("userId"));
+		String pic = json.get("pic");
+		
+		Users removeRecursion = us.updateProfilePic(userId, pic);
+		removeRecursion.setPosts(null);
+		removeRecursion.setLikedPosts(null);
+		return removeRecursion;
+	}
+	
+	// This one will probably need to be changed when email feature is added
+	@PostMapping("/update")
+	public @ResponseBody Users updatePassword(@RequestBody Map<String, String> json) {
+		int userId = Integer.parseInt(json.get("userId"));
+		String password = json.get("password");
+		
+		Users removeRecursion = us.updatePassword(userId, password);
+		removeRecursion.setPosts(null);
+		removeRecursion.setLikedPosts(null);
+		return removeRecursion;
+	}
+	
+	@PostMapping("/updateBio")
+	public @ResponseBody Users updateBio(@RequestBody Map<String, String> json) {
+		int userId = Integer.parseInt(json.get("userId"));
+		String bio = json.get("bio");
+		String interests = json.get("interests");
+		
+		Users removeRecursion = us.updateBio(userId, bio, interests);
+		removeRecursion.setPosts(null);
+		removeRecursion.setLikedPosts(null);
+		return removeRecursion;
 	}
 
 }
