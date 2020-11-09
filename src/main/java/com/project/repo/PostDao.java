@@ -2,43 +2,53 @@ package com.project.repo;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.project.model.Posts;
-import com.project.model.Users;
-import com.project.util.HibernateUtil;
 
-public class PostDao implements DaoContract<Posts, Integer> {
-
-	@Override
+@Repository
+@Transactional
+public class PostDao {
+	
+	private SessionFactory sessfact;
+	
+	public PostDao() {	}
+	
+	@Autowired
+	public PostDao(SessionFactory sessfact) {
+		super();
+		this.sessfact = sessfact;
+	}
+	
 	public List<Posts> findAll() {
-		List<Posts> pList = HibernateUtil.getSessionFactory().openSession().createNativeQuery("select * from users", Posts.class).list();
+		List<Posts> pList = sessfact.openSession().createNativeQuery("select * from users", Posts.class).list();
 		return pList;
 	}
 
-	@Override
 	public Posts findById(Integer i) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public Posts update(Posts t) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public Posts save(Posts t) {
-		Session sess = HibernateUtil.getSessionFactory().openSession();
+		Session sess = sessfact.openSession();
 		Transaction tx = sess.beginTransaction();
 		sess.persist(t);
 		tx.commit();
 		return t;
 	}
 
-	@Override
 	public Posts delete(Integer i) {
 		// TODO Auto-generated method stub
 		return null;
