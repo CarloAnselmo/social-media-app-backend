@@ -66,8 +66,6 @@ public class UserDao {
 		sess.save(c);
 	}
 	
-	
-
 	public Users delete(Integer i) {
 		//Session ses = HibernateUtil.getSessionFactory().openSession();
 		//Needs to delete the profile first followed by the user

@@ -72,6 +72,46 @@ public class UserService {
 		return temp;
 	}
 	
+	/* ----------------------------------------- Updating user info ----------------------------------------- */
+	
+	public Users updateBasicInfo(int id, String username, String firstname, String lastname) {
+		Users temp = udao.findById(id);
+		temp.setUsername(username);
+		temp.setFirstname(firstname);
+		temp.setLastname(lastname);
+		
+		return udao.update(temp);
+	}
+	
+	public Users updateEmail(int id, String email) {
+		Users temp = udao.findById(id);
+		temp.setEmail(email);
+		
+		return udao.update(temp);
+	}
+	
+	public Users updateProfilePic(int id, String picurl) {
+		Users temp = udao.findById(id);
+		temp.setPicUrl(picurl);
+		
+		return udao.update(temp);
+	}
+
+	public Users updatePassword(int id, String password) {
+		Users temp = udao.findById(id);
+		temp.setPassword(password);
+		
+		return udao.update(temp);
+	}
+	
+	public Users updateBio(int id, String bio, String interests) {
+		Users temp = udao.findById(id);
+		temp.setBio(bio);
+		temp.setInterests(interests);
+		
+		return udao.update(temp);
+	}
+	
 	public String updateUserStatus(int id, String newStatus) {
 		Users u = udao.findById(id);
 		u.setStatus(newStatus);
