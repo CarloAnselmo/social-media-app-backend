@@ -3,6 +3,8 @@ package com.project.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.annotation.MultipartConfig;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,23 +15,28 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.project.model.Users;
+import com.project.service.S3Service;
 import com.project.service.UserService;
 
 @Controller
 @CrossOrigin // Injects the header, allows requests from this origin. Can also use wildcards
 @RequestMapping("/users")
+@MultipartConfig
 public class UserController {
 
 	private UserService us;
+	private S3Service s3s;
 
 	public UserController() {
 	}
 
-	public UserController(UserService us) {
+	public UserController(UserService us, S3Service s3s) {
 		super();
 		this.us = us;
+		this.s3s = s3s;
 	}
 
 	public UserService getUsers() {
@@ -39,6 +46,11 @@ public class UserController {
 	@Autowired
 	public void setPps(UserService us) {
 		this.us = us;
+	}
+	
+	@Autowired
+	public void setS3s(S3Service s3s) {
+		this.s3s = s3s;
 	}
 
 	@GetMapping
@@ -96,10 +108,11 @@ public class UserController {
 	
 	// This one will probably need to be changed when we figure out images
 	@PostMapping("/updatePic")
-	public @ResponseBody Users updateProfilePic(@RequestBody Map<String, String> json) {
-		int userId = Integer.parseInt(json.get("userId"));
-		String pic = json.get("pic");
-		
+	public @ResponseBody Users updateProfilePic(@RequestParam("userId") int userId, @RequestParam("image") MultipartFile image) {
+		String pic = "";
+		if (image.getContentType().contains("image")) {
+			pic = s3s.UploadAvatar(userId, image);
+		}
 		Users removeRecursion = us.updateProfilePic(userId, pic);
 		removeRecursion.setPosts(null);
 		removeRecursion.setLikedPosts(null);
