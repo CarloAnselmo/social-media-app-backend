@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.model.Users;
@@ -88,6 +87,8 @@ public class UserController {
 		int userId = Integer.parseInt(json.get("userId"));
 		String email = json.get("email");
 		
+		// LOGIC TO SEND EMAIL GOES HERE
+		
 		Users removeRecursion = us.updateEmail(userId, email);
 		removeRecursion.setPosts(null);
 		removeRecursion.setLikedPosts(null);
@@ -100,6 +101,8 @@ public class UserController {
 		int userId = Integer.parseInt(json.get("userId"));
 		String pic = json.get("pic");
 		
+		// S3 LOGIC GOES HERE
+		
 		Users removeRecursion = us.updateProfilePic(userId, pic);
 		removeRecursion.setPosts(null);
 		removeRecursion.setLikedPosts(null);
@@ -111,6 +114,8 @@ public class UserController {
 	public @ResponseBody Users updatePassword(@RequestBody Map<String, String> json) {
 		int userId = Integer.parseInt(json.get("userId"));
 		String password = json.get("password");
+		
+		// LOGIC TO SEND EMAIL GOES HERE
 		
 		Users removeRecursion = us.updatePassword(userId, password);
 		removeRecursion.setPosts(null);

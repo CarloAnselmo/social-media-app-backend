@@ -2,6 +2,7 @@ package com.project.service;
 
 import java.util.List;
 
+import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -80,7 +81,12 @@ public class UserService {
 		temp.setFirstname(firstname);
 		temp.setLastname(lastname);
 		
-		return udao.update(temp);
+		try {
+			return udao.update(temp);
+		} catch (Exception e) {
+			temp.setUsername("exception");
+			return udao.update(temp);
+		}
 	}
 	
 	public Users updateEmail(int id, String email) {
