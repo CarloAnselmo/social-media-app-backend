@@ -63,6 +63,7 @@ public class UserController {
 	
 	@PostMapping("/status")
 	public @ResponseBody String updateStatus(@RequestBody Map<String, String> json) {
+		System.out.println(json);
 		int userId = Integer.parseInt(json.get("userId"));
 		String status = json.get("status");
 		return us.updateUserStatus(userId, status);
