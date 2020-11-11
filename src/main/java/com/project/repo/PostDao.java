@@ -28,16 +28,10 @@ public class PostDao {
 	}
 	
 	public List<Posts> findAll() {
-<<<<<<< HEAD
-		return sessfact.openSession().createQuery("from Posts", Posts.class).list();
-=======
 		List<Posts> pList = sessfact.openSession().createNativeQuery("select * from posts", Posts.class).list();
 		return pList;
->>>>>>> 7cfa8a4e5215367d3935f1aa3a4be2f1170638ec
 	}
 	
-	
-
 	public Posts findById(Integer i) {
 		// TODO Auto-generated method stub
 		return null;

@@ -18,10 +18,21 @@ import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.project.model.Users;
 import com.project.repo.UserDao;
+import com.project.service.EmailService;
 
 public class Driver {
 	
 	public static void main(String[] args) throws IOException {
+		
+		
+		
+		/*
+		EmailService es = new EmailService();
+		
+		es.sendMail("mochicircleguy@gmail.com", "Welcome back to Mochi Circle!", 
+        		"You just logged in! Click this link to validate your account: "
+        		+ "<a href=\"http://localhost:8080/api/users/verify/\">http://localhost:8080/api/users/verify/"+6969+"</a>.");
+		*/
 		
 //		Users u2 = new Users(0, "big", "pass", "Pat", "Forty", "asdm@todfdfmmy.todm", "http://www.wow.com/", "happy", "I'm old", "I like to eat bugs", new HashSet<>(), new HashSet<>());
 //		Posts p1 = new Posts(0, "wowowowowow", u1, new HashSet<>());
@@ -53,11 +64,11 @@ public class Driver {
 //		System.out.println(us.getAllUsers());
 
 		
-		Regions region = Regions.US_EAST_2;
+		//Regions region = Regions.US_EAST_2;
 		
-		AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withRegion(region).build();
-		String bucket = "revature-mochi-circle";
-		String fileName = "avatar/userid";
+		///AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withRegion(region).build();
+		//String bucket = "revature-mochi-circle";
+		//String fileName = "avatar/userid";
 //		
 //		CreateBucketRequest createBucketRequest = CreateBucketRequest.builder().bucket(bucket)
 //				.createBucketConfiguration(CreateBucketConfiguration.builder()
@@ -68,11 +79,11 @@ public class Driver {
 //		s3.createBucket(createBucketRequest);
 		
 //		s3.putObject(PutObjectRequest.builder().bucket(bucket).key(key).build(), RequestBody.fromByteBuffer(getRandomByteBuffer(10000)));
-		PutObjectRequest request = new PutObjectRequest(bucket, fileName, new File("C:\\Users\\carlo\\OneDrive\\Desktop\\Images\\Profile Pictures\\dance_man.png")).withCannedAcl(CannedAccessControlList.PublicRead);
-		System.out.println(":)");
-		s3Client.putObject(request);
+		//PutObjectRequest request = new PutObjectRequest(bucket, fileName, new File("C:\\Users\\carlo\\OneDrive\\Desktop\\Images\\Profile Pictures\\dance_man.png")).withCannedAcl(CannedAccessControlList.PublicRead);
+		//System.out.println(":)");
+		//s3Client.putObject(request);
 
-		System.out.println(s3Client.getUrl(bucket, fileName).toString());
+		//System.out.println(s3Client.getUrl(bucket, fileName).toString());
 		
 	}
 }

@@ -2,12 +2,14 @@ package com.project.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="likes")
 public class Likes {
 
+	@Id
 	@Column(name="user_id")
 	private int user_id;
 	

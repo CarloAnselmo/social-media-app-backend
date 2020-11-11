@@ -62,11 +62,7 @@ public class UserController {
 	public @ResponseBody Users findUserNoPass(@PathVariable int id) {
 		return us.findUserNoPass(id);
 	}
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> 7cfa8a4e5215367d3935f1aa3a4be2f1170638ec
 	@PostMapping("/validate/{username}+{password}")
 	public @ResponseBody Users validateUser(@PathVariable String username, @PathVariable String password) {
 		return us.validateLogin(username, password);
