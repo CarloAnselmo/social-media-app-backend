@@ -1,5 +1,7 @@
 package com.project.service;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,13 +56,43 @@ public class UserService {
 	
 	public Users validateLogin(String username, String pass) {
 		//hashing the password formula
+		String newPass="";
+		try {
+			
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			byte[] hashPass = md.digest(pass.getBytes());
+			newPass = hexString(hashPass);
+			
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
 		
-		Users temp = udao.findByUsernamePass(username, pass);
+		Users temp = udao.findByUsernamePass(username, newPass);
 		temp.setPassword(null);
 		temp.setPosts(null);
 		temp.setLikedPosts(null);
 		return temp;
 	}
+	
+	//------------------------------------------------------------------------------------------------
+	//function found at: https://stackoverflow.com/questions/1033947/mysql-md5-and-java-md5-not-equal
+	//meant to encode the hashed password into base 16 to match the password in the db.
+	public String hexString( byte[] bytes ) 
+	{
+		StringBuffer sb = new StringBuffer();
+		for( int i=0; i<bytes.length; i++ )     
+		{
+			byte b = bytes[ i ];
+			String hex = Integer.toHexString((int) 0x00FF & b);
+			if (hex.length() == 1) 
+			{
+			   sb.append("0");
+			}
+			sb.append( hex );
+		}
+		return sb.toString();
+	}
+	//--------------------------------------------------------------------------------------------------
 	
 	public Users createUser(String username, String pass, String firstName, String lastName,
 			String email) {
