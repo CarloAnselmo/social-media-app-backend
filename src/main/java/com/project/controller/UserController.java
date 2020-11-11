@@ -11,10 +11,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-<<<<<<< HEAD
-=======
 import org.springframework.web.bind.annotation.RequestBody;
->>>>>>> 4485b068313dd1e6c1d6036654071e014160fa50
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -65,7 +62,6 @@ public class UserController {
 	public @ResponseBody Users findUserNoPass(@PathVariable int id) {
 		return us.findUserNoPass(id);
 	}
-<<<<<<< HEAD
 	
 	@PostMapping("/validate/{username}+{password}")
 	public @ResponseBody Users validateUser(@PathVariable String username, @PathVariable String password) {
@@ -74,20 +70,9 @@ public class UserController {
 	
 	@PostMapping("/create/{username}+{pass}+{firstname}+{lastname}+{email}")
 	public @ResponseBody Users validateUser(@PathVariable String username, @PathVariable String pass, 
-			@PathVariable String firstname, @PathVariable String lastname, @PathVariable String email) {
+			@PathVariable String firstname, @PathVariable String lastname, @PathVariable String email) 
+	{
 		return us.createUser(username, pass, firstname, lastname, email);
-=======
-
-	@GetMapping("/validate/{username}+{password}")
-	public @ResponseBody Users validateUser(@PathVariable String username, @PathVariable String password) {
-		return us.validateLogin(username, password);
-	}
-
-	@GetMapping("/create/{username}+{password}+{firstname}+{lastname}+{email}")
-	public @ResponseBody Users validateUser(@PathVariable String username, @PathVariable String pass,
-			@PathVariable String firstName, @PathVariable String lastName, @PathVariable String email) {
-		return us.createUser(username, pass, firstName, lastName, email);
->>>>>>> 4485b068313dd1e6c1d6036654071e014160fa50
 	}
 	
 	@PostMapping("/status")
