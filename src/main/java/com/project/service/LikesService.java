@@ -1,13 +1,13 @@
 package com.project.service;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.repo.LikesDao;
-
 import com.project.model.Likes;
+import com.project.repo.LikesDao;
 
 @Service(value="likesservice")
 public class LikesService {
@@ -35,8 +35,12 @@ public class LikesService {
 		return ld.findAll();
 	}
 	
-	public int findCountByPostId(int post_id) {
+	public BigInteger findCountByPostId(int post_id) {
 		return ld.findCountByPostId(post_id);
+	}
+	
+	public BigInteger getLikeStatus(int user_id, int post_id) {
+		return ld.getLikeStatus(user_id, post_id);
 	}
 	
 	public Likes createLikes(Likes t) {

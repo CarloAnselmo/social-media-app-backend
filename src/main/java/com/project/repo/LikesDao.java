@@ -1,5 +1,6 @@
 package com.project.repo;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -31,10 +32,17 @@ public class LikesDao {
 			return sessfact.openSession().createNativeQuery("select * from social.likes", Likes.class).list();
 		}
 		
-		public int findCountByPostId(int post_id) {
+		public BigInteger findCountByPostId(int post_id) {
 			Query q = sessfact.openSession().createNativeQuery("select count(likes.user_id) from social.likes where post_id = ?1");
 			q.setParameter(1, post_id);
-			return (int) q.getSingleResult();
+			return (BigInteger) q.getSingleResult();
+		}
+		
+		public BigInteger getLikeStatus(int user_id, int post_id) {
+			Query q = sessfact.openSession().createNativeQuery("select count(*) from social.likes where user_id = ?1 and post_id = ?2");
+			q.setParameter(1, user_id);
+			q.setParameter(2, post_id);
+			return  (BigInteger) q.getSingleResult();
 		}
 		
 		public Likes update(Likes t) {
