@@ -8,6 +8,10 @@
 	<packaging>war</packaging>
 	<name>MochiCircle</name>
 
+	<build>
+		<finalName>${project.name}</finalName>
+	</build>
+
 	<properties>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.source>1.8</maven.compiler.source>
@@ -93,6 +97,19 @@
 			<artifactId>spring-orm</artifactId>
 			<version>5.3.0</version>
 		</dependency>
+
+<!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-s3 -->
+<dependency>
+    <groupId>com.amazonaws</groupId>
+    <artifactId>aws-java-sdk-s3</artifactId>
+    <version>1.11.896</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+<dependency>
+    <groupId>commons-fileupload</groupId>
+    <artifactId>commons-fileupload</artifactId>
+    <version>1.4</version>
+</dependency>
 
 	</dependencies>
 

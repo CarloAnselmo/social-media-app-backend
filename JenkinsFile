@@ -1,0 +1,27 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('clean') {
+            steps {
+                sh 'mvn clean'
+            }
+        }
+        stage('package') {
+            steps {
+                sh 'mvn package -Dmaven.test.failure.ignore=true'
+            }
+        }
+        stage('deploy'){
+        	steps{
+        		sh 'cp "/home/ec2-user/.jenkins/workspace/Social Media/target/MochiCircle.war" /home/ec2-user/apache-tomcat-8.5.58/webapps'
+        	}
+        }
+        stage('start server') {
+            steps {
+                sh 'sh /home/ec2-user/apache-tomcat-8.5.58/bin/startup.sh'
+            }
+        }
+    }
+}
+
