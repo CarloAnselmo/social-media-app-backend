@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.project.model.Posts;
+import com.project.model.Users;
 
 @Repository
 @Transactional
@@ -30,6 +31,8 @@ public class PostDao {
 		List<Posts> pList = sessfact.openSession().createNativeQuery("select * from posts", Posts.class).list();
 		return pList;
 	}
+	
+	
 
 	public Posts findById(Integer i) {
 		// TODO Auto-generated method stub
@@ -49,9 +52,12 @@ public class PostDao {
 		return t;
 	}
 
-	public Posts delete(Integer i) {
-		// TODO Auto-generated method stub
-		return null;
+	public Posts delete(Posts t) {
+		Session sess = sessfact.openSession();
+		Transaction tx = sess.beginTransaction();
+		sess.delete(t);
+		tx.commit();
+		return t;
 	}
 
 	
