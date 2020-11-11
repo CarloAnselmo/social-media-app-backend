@@ -68,7 +68,8 @@ public class Driver {
 //		s3.createBucket(createBucketRequest);
 		
 //		s3.putObject(PutObjectRequest.builder().bucket(bucket).key(key).build(), RequestBody.fromByteBuffer(getRandomByteBuffer(10000)));
-		PutObjectRequest request = new PutObjectRequest(bucket, fileName, new File("/Users/steven/Documents/GitHub.nosync/social-media-app-backend/src/main/resources/Avatar3.png")).withCannedAcl(CannedAccessControlList.PublicRead);
+		PutObjectRequest request = new PutObjectRequest(bucket, fileName, new File("C:\\Users\\carlo\\OneDrive\\Desktop\\Images\\Profile Pictures\\dance_man.png")).withCannedAcl(CannedAccessControlList.PublicRead);
+		System.out.println(":)");
 		s3Client.putObject(request);
 
 		System.out.println(s3Client.getUrl(bucket, fileName).toString());
