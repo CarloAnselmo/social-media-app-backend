@@ -29,6 +29,7 @@
 		<property name="hibernate.hbm2ddl.auto">none</property>
 		<mapping class="com.project.model.Users"/>
 		<mapping class="com.project.model.Posts"/>
+		<mapping class="com.project.model.PostView"/>
 
 	</session-factory>
 
