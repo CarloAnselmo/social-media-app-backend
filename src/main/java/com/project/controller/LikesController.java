@@ -1,5 +1,7 @@
 package com.project.controller;
 
+
+import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,8 +46,13 @@ public class LikesController {
 	}
 	
 	@GetMapping("find/{post_id}")
-	public @ResponseBody int findCountByPostId(@PathVariable int post_id) {
+	public @ResponseBody BigInteger findCountByPostId(@PathVariable int post_id) {
 		return ls.findCountByPostId(post_id);
+	}
+	
+	@GetMapping("status/{user_id}+{post_id}")
+	public @ResponseBody BigInteger getLikeStatus(@PathVariable int user_id, @PathVariable int post_id) {
+		return ls.getLikeStatus(user_id, post_id);
 	}
 	
 	@GetMapping("update/{status}+{postid}+{userid}")

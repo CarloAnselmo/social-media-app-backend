@@ -1,5 +1,7 @@
 package com.project.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,12 +9,16 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="likes")
-public class Likes {
 
+public class Likes implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@Column(name="user_id")
 	private int user_id;
-	
+
+	@Id
 	@Column(name="post_id")
 	private int post_id;
 
