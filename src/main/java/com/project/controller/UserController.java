@@ -63,16 +63,17 @@ public class UserController {
 		return us.findUserNoPass(id);
 	}
 
-	@PostMapping("/validate/{username}+{password}")
-	public @ResponseBody Users validateUser(@PathVariable String username, @PathVariable String password) {
-		return us.validateLogin(username, password);
+	@PostMapping("/validate")
+	public @ResponseBody Users validateUser(@RequestBody Map<String, String> json) {
+		
+		return us.validateLogin(json.get("username"), json.get("password"));
 	}
 	
-	@PostMapping("/create/{username}+{pass}+{firstname}+{lastname}+{email}")
-	public @ResponseBody Users validateUser(@PathVariable String username, @PathVariable String pass, 
-			@PathVariable String firstname, @PathVariable String lastname, @PathVariable String email) 
+	@PostMapping("/create")
+	public @ResponseBody Users createUser(@RequestBody Map<String, String> json) 
 	{
-		return us.createUser(username, pass, firstname, lastname, email);
+		return us.createUser(json.get("username"), json.get("password"), json.get("firstname"), 
+				json.get("lastname"), json.get("email"));
 	}
 
 	@PostMapping("/status")
