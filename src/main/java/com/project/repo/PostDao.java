@@ -27,7 +27,7 @@ public class PostDao {
 	}
 	
 	public List<Posts> findAll() {
-		List<Posts> pList = sessfact.openSession().createNativeQuery("select * from users", Posts.class).list();
+		List<Posts> pList = sessfact.openSession().createNativeQuery("select * from posts", Posts.class).list();
 		return pList;
 	}
 
