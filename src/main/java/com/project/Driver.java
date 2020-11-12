@@ -1,4 +1,4 @@
-package com.example;
+package com.project;
 
 import java.io.File;
 import java.io.IOException;
@@ -7,6 +7,7 @@ import java.nio.ByteBuffer;
 import java.util.HashSet;
 import java.util.Random;
 
+import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -16,18 +17,21 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.project.aop.Loggers;
 import com.project.model.Users;
 import com.project.repo.UserDao;
 import com.project.service.EmailService;
 
 public class Driver {
+	
+	final static Logger logger = Logger.getLogger(Loggers.class);
 
 	public static void main(String[] args) throws IOException {
-
-		EmailService.sendMail("nikix73362@patmui.com", "Welcome back to Mochi Circle!",
-				"You just logged in! Click this link to validate your account: "
-						+ "<a href=\"http://localhost:8080/api/users/verify/\">http://localhost:8080/api/users/verify/"
-						+ 6969 + "</a>.");
+		
+//		EmailService.sendMail("nikix73362@patmui.com", "Welcome back to Mochi Circle!",
+//				"You just logged in! Click this link to validate your account: "
+//						+ "<a href=\"http://localhost:8080/api/users/verify/\">http://localhost:8080/api/users/verify/"
+//						+ 6969 + "</a>.");
 
 //		Users u2 = new Users(0, "big", "pass", "Pat", "Forty", "asdm@todfdfmmy.todm", "http://www.wow.com/", "happy", "I'm old", "I like to eat bugs", new HashSet<>(), new HashSet<>());
 //		Posts p1 = new Posts(0, "wowowowowow", u1, new HashSet<>());
