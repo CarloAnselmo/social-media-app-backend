@@ -30,7 +30,7 @@ public class PostViewDao {
 	}
 	
 	public List<PostView> findByUserId(int userid) {
-		Query<PostView> q = sessfact.openSession().createNativeQuery("select * from social.post_view where userid =?1", PostView.class);
+		Query<PostView> q = sessfact.openSession().createNativeQuery("select * from social.post_view where post_userid =?1", PostView.class);
 		q.setParameter(1, userid);
 		return q.getResultList();
 	}
