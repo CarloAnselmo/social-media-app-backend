@@ -9,6 +9,11 @@ import org.springframework.stereotype.Service;
 import com.project.model.Posts;
 import com.project.repo.PostDao;
 
+import com.project.repo.PostDao;
+
+import com.project.model.Posts;
+
+
 @Service(value="postservice")
 public class PostService {
 

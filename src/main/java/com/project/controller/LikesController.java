@@ -65,5 +65,4 @@ public class LikesController {
 		}
 		return l;
 	}
-	
 }

@@ -16,7 +16,7 @@ public class Likes implements Serializable{
 	@Id
 	@Column(name="user_id")
 	private int user_id;
-	
+
 	@Id
 	@Column(name="post_id")
 	private int post_id;
@@ -51,6 +51,5 @@ public class Likes implements Serializable{
 	public String toString() {
 		return "Likes [user_id=" + user_id + ", post_id=" + post_id + "]";
 	}
-	
-	
+		
 }

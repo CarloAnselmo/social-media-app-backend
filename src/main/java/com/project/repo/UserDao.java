@@ -39,8 +39,23 @@ public class UserDao {
 		return sessfact.getCurrentSession().get(Users.class, id);
 	}
 	
+	public Users findByUsername(String username) {
+		return sessfact.getCurrentSession().get(Users.class, username);
+	}
+	
 	public Users findByUsernamePass(String username, String pass) {
-		return sessfact.getCurrentSession().createQuery("from Users where username = '"+username+"' and password = '"+pass+"'", Users.class).list().get(0);
+		
+		Users testU = null;
+		try {
+			 testU = sessfact.getCurrentSession().createQuery("from Users where username = '"+username+"' "
+					+ "and password = '"+pass+"'", Users.class).list().get(0);
+		} catch(IndexOutOfBoundsException e)
+		{
+			testU = null;
+			return testU;
+		}
+		
+		return testU;
 	}
 
 	public Users update(Users t) {
@@ -60,10 +75,11 @@ public class UserDao {
 //		return t;
 //	}
 	
-	public void save(Users c) {
+	public Users save(Users c) {
 //		sessfact.getCurrentSession().save(c);
 		Session sess = sessfact.getCurrentSession();
 		sess.save(c);
+		return c;
 	}
 	
 	public Users delete(Integer i) {

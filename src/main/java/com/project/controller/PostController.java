@@ -89,4 +89,5 @@ public class PostController {
 		}
 		return ps.savePosts(new Posts(0, postText, us.findUserNoPass(userid), null, pic));
 	}
+
 }
