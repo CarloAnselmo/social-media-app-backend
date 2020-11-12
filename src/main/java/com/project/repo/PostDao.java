@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.project.model.Posts;
-import com.project.model.Users;
 
 @Repository
 @Transactional
@@ -32,8 +31,6 @@ public class PostDao {
 		return pList;
 	}
 	
-	
-
 	public Posts findById(Integer i) {
 		// TODO Auto-generated method stub
 		return null;
