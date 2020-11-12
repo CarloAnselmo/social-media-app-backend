@@ -153,7 +153,7 @@ public class UserService {
 			udao.update(user);
 			
 			//send email with their new random password inside it
-			es.sendMail(email, "Here's your new temporary password!", 
+			EmailService.sendMail(email, "Here's your new temporary password!", 
 		       		"Have you had a mochi donut today? You better. Anyway, here is your temporary password: "
 					+ newPass);
 			
