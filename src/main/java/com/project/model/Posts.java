@@ -32,20 +32,20 @@ public class Posts {
 	@ManyToMany(mappedBy = "likedPosts")
 	private Set<Users> likes;
 	
-//	@OneToMany(mappedBy = "post")
-//	Set<Likes> likes;
+	private String image;
 
 	public Posts() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-public Posts(int id, String post_text, Users users, Set<Users> likes) {
+public Posts(int id, String post_text, Users users, Set<Users> likes, String image) {
 	super();
 	this.id = id;
 	this.post_text = post_text;
 	this.users = users;
 	this.likes = likes;
+	this.image = image;
 }
 
 public int getId() {
@@ -80,10 +80,22 @@ public void setLikes(Set<Users> likes) {
 	this.likes = likes;
 }
 
+
+public String getImage() {
+	return image;
+}
+
+public void setImage(String image) {
+	this.image = image;
+}
+
 @Override
 public String toString() {
-	return "Posts [id=" + id + ", post_text=" + post_text + "]";
+	return "Posts [id=" + id + ", post_text=" + post_text + ", image=" + image
+			+ "]";
 }
+
+
 
 	
 	
