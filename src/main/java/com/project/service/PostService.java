@@ -1,13 +1,13 @@
 package com.project.service;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.model.Users;
+import com.project.model.Posts;
 import com.project.repo.PostDao;
-import com.project.repo.UserDao;
 
 @Service(value="postservice")
 public class PostService {
@@ -33,5 +33,27 @@ public class PostService {
 	}
 
 	// Methods go down here
+	
+	public List<Posts> getAllPosts() {
+		//return pdao.findAll();
+		List<Posts> temp = pdao.findAll();
+		for(Posts p : temp) {
+			p.setUsers(null);
+			p.setLikes(null);
+		}
+		return temp;
+	}
+	
+	public int getNextPostId() {
+		return pdao.getNextPostId();
+	}
 
+	
+	public Posts savePosts(Posts t) {
+		return pdao.save(t);
+	}
+	
+	public Posts deletePosts(Posts t) {
+		return pdao.delete(t);
+	}
 }
