@@ -25,11 +25,6 @@ public class UserDao {
 		super();
 		this.sessfact = sessfact;
 	}
-
-//	public List<Users> findAll() {
-//		List<Users> uList = HibernateUtil.getSessionFactory().openSession().createNativeQuery("select * from users", Users.class).list();
-//		return uList;
-//	}
 	
 	public List<Users> findAll() {
 		return sessfact.getCurrentSession().createQuery("from Users", Users.class).list();
@@ -40,7 +35,7 @@ public class UserDao {
 	}
 	
 	public Users findByUsername(String username) {
-		return sessfact.getCurrentSession().get(Users.class, username);
+		return sessfact.getCurrentSession().createQuery("from Users where username = '"+username+"'", Users.class).list().get(0);
 	}
 	
 	public Users findByUsernamePass(String username, String pass) {
@@ -61,32 +56,18 @@ public class UserDao {
 	public Users update(Users t) {
 		Session sess = sessfact.getCurrentSession();
 		sess.update(t);
+		//sess.close();
 		return t;
 	}
-
-//	public Users save(Users t) {
-////		//create blank profile before you add users
-////		Profiles blank = new Profiles("no-pic", "I'm boring", "No bio", "No interests");
-////		pDAO.save(blank);
-//		Session sess = HibernateUtil.getSessionFactory().openSession();
-//		Transaction tx = sess.beginTransaction();
-//		sess.persist(t);
-//		tx.commit();
-//		return t;
-//	}
 	
 	public Users save(Users c) {
-//		sessfact.getCurrentSession().save(c);
 		Session sess = sessfact.getCurrentSession();
 		sess.save(c);
+		//sess.close();
 		return c;
 	}
 	
 	public Users delete(Integer i) {
-		//Session ses = HibernateUtil.getSessionFactory().openSession();
-		//Needs to delete the profile first followed by the user
-		//HQL
-		//return ses.createQuery("delete from users where user_id ='"+i+"'", Users.class).getResultList().get(0);
 		return null;
 	}
 

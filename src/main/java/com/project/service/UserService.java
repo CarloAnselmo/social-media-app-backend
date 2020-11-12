@@ -135,7 +135,8 @@ public class UserService {
 		        
 		es.sendMail(email, "Welcome to Mochi Circle!", 
 		       		"Have you had a mochi donut today? You better. Anyway, just click this link to validate your account: "
-		       		+ "<a>http://localhost:8080/api/users/verify/"+code+"</a>.");
+		       		+ "<a href=\"http://localhost:8080/MochiCircle/api/verify/"+code+"\">http://localhost:8080/MochiCircle/api/verify/"+code+"</a>."
+		       				+ "<br/><br/>Thank you. I can't promise that we won't spam your email, but you know.");
 		       
 		//The above code should work
 		return temp;

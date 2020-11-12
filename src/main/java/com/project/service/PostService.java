@@ -5,9 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.repo.PostDao;
-
 import com.project.model.Posts;
+import com.project.repo.PostDao;
 
 @Service(value="postservice")
 public class PostService {
