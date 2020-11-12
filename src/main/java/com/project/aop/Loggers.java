@@ -15,18 +15,43 @@ public class Loggers {
 	
 	final static Logger logger = Logger.getLogger(Loggers.class);
 	
-	@Before("execution(* validateUser(..))")
-	public void beforeMethods(JoinPoint jp) {
-		System.out.println(jp.getSignature());
-		System.out.println("EGHBWEOGIWEBFOIUWEBNWEIUFNWEIUFNWEIUFN\nAOFUDYGEBFYWEBGFBWEF\nEFIUVEWGFWEBFYWEBFWEYFB");
-		logger.info(jp.getSignature());
+//	@Before("execution(* validateUser(..))")
+//	public void beforeMethods(JoinPoint jp) {
+//		for(int i = 0; i < 10; i++) {
+//			System.out.println(jp.getSignature());
+//		}
+//		logger.info(jp.getSignature());
+//	}
+	
+    @Pointcut("within(@org.springframework.stereotype.Controller *)")
+    public void controller() {
+    }
+    
+    @Pointcut("within(@org.springframework.stereotype.Service *)")
+    public void service() {
+    }
+    
+    @Pointcut("within(@org.springframework.stereotype.Repository *)")
+    public void repository() {
+    }
+
+	
+	@Before("controller()")
+	public void controllerLogger(JoinPoint jp) {
+		String[] parsed = jp.getSignature().toString().split("[.]+");
+		String build = "("+parsed[parsed.length-3]+") "+parsed[parsed.length-2]+": "+parsed[parsed.length-1];
+		System.out.println("------ Client has made a request ------");
+		System.out.println(build);
+		logger.info("------ Client has made a request ------");
+		logger.info(build);
 	}
 	
-	@Pointcut("execution(* com.project.controller.*.*(..))")
-	public void beforeMethods2(JoinPoint jp) {
-		System.out.println(jp.getSignature());
-		System.out.println("------------------------------------------------------------------------------------------------------------------------------");
-		logger.info(jp.getSignature());
+	@Before("service() || repository()")
+	public void elseLogger(JoinPoint jp) {
+		String[] parsed = jp.getSignature().toString().split("[.]+");
+		String build = "("+parsed[parsed.length-3]+") "+parsed[parsed.length-2]+": "+parsed[parsed.length-1];
+		System.out.println(build);
+		logger.info(build);
 	}
 
 }
