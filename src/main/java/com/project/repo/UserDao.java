@@ -38,6 +38,10 @@ public class UserDao {
 		return sessfact.getCurrentSession().createQuery("from Users where username = '"+username+"'", Users.class).list().get(0);
 	}
 	
+	public Users findByEmail(String email) {
+		return sessfact.getCurrentSession().createQuery("from Users where email = '"+email+"'", Users.class).list().get(0);
+	}
+	
 	public Users findByUsernamePass(String username, String pass) {
 		
 		Users testU = null;

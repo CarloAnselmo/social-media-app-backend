@@ -71,6 +71,12 @@ public class UserController {
 		return us.validateLogin(json.get("username"), json.get("password"));
 	}
 	
+	@PostMapping(value="/forgot")
+	public @ResponseBody String forgotPassword(@RequestBody Map<String, String> json) {
+		
+		return us.forgotPass(json.get("email"));
+	}
+	
 	@RequestMapping(value="/create", method=RequestMethod.POST)
 	public @ResponseBody Users createUser(@RequestBody Map<String, String> json) 
 	{
