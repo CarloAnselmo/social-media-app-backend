@@ -30,14 +30,20 @@ public class PostView implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Column(name="userid")
-	int userid;
+	@Column(name="post_userid")
+	int post_userid;
 	
-	@Column(name="username")
-	String username;
+	@Column(name="post_firstname")
+	String post_firstname;
 	
-	@Column(name="picurl")
-	String picurl;
+	@Column(name="post_lastname")
+	String post_lastname;
+	
+	@Column(name="post_username")
+	String post_username;
+	
+	@Column(name="post_picurl")
+	String post_picurl;
 	
 	@Id //id for individual post, not to be confused with userid
 	@Column(name="id")
@@ -45,29 +51,51 @@ public class PostView implements Serializable{
 	
 	@Column(name="post_text")
 	String post_text;
+	
+	@Column(name="image")
+	String image;
+	
+	@Column(name="likes")
+	int likes;
 
-	public int getUserid() {
-		return userid;
+	public int getPost_userid() {
+		return post_userid;
 	}
 
-	public void setUserid(int userid) {
-		this.userid = userid;
+	public void setPost_userid(int post_userid) {
+		this.post_userid = post_userid;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getPost_firstname() {
+		return post_firstname;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setPost_firstname(String post_firstname) {
+		this.post_firstname = post_firstname;
 	}
 
-	public String getPicurl() {
-		return picurl;
+	public String getPost_lastname() {
+		return post_lastname;
 	}
 
-	public void setPicurl(String picurl) {
-		this.picurl = picurl;
+	public void setPost_lastname(String post_lastname) {
+		this.post_lastname = post_lastname;
+	}
+
+	public String getPost_username() {
+		return post_username;
+	}
+
+	public void setPost_username(String post_username) {
+		this.post_username = post_username;
+	}
+
+	public String getPost_picurl() {
+		return post_picurl;
+	}
+
+	public void setPost_picurl(String post_picurl) {
+		this.post_picurl = post_picurl;
 	}
 
 	public int getId() {
@@ -86,29 +114,46 @@ public class PostView implements Serializable{
 		this.post_text = post_text;
 	}
 
+	public String getImage() {
+		return image;
+	}
 
-	public PostView(int userid, String username, String picurl, int id, String post_text) {
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public int getLikes() {
+		return likes;
+	}
+
+	public void setLikes(int likes) {
+		this.likes = likes;
+	}
+
+	public PostView(int post_userid, String post_firstname, String post_lastname, String post_username,
+			String post_picurl, int id, String post_text, String image, int likes) {
 		super();
-		this.userid = userid;
-		this.username = username;
-		this.picurl = picurl;
+		this.post_userid = post_userid;
+		this.post_firstname = post_firstname;
+		this.post_lastname = post_lastname;
+		this.post_username = post_username;
+		this.post_picurl = post_picurl;
 		this.id = id;
 		this.post_text = post_text;
+		this.image = image;
+		this.likes = likes;
 	}
 
 	public PostView() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public String toString() {
-		return "PostView [userid=" + userid + ", username=" + username + ", picurl=" + picurl + ", id=" + id
-				+ ", post_text=" + post_text + "]";
+		return "PostView [post_userid=" + post_userid + ", post_firstname=" + post_firstname + ", post_lastname="
+				+ post_lastname + ", post_username=" + post_username + ", post_picurl=" + post_picurl + ", id=" + id
+				+ ", post_text=" + post_text + ", image=" + image + ", likes=" + likes + "]";
 	}
-
-
-	
-	
-	
 	
 }

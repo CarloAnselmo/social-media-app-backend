@@ -1,5 +1,6 @@
 package com.project.repo;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -7,6 +8,7 @@ import javax.transaction.Transactional;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -29,6 +31,11 @@ public class PostDao {
 	public List<Posts> findAll() {
 		List<Posts> pList = sessfact.openSession().createNativeQuery("select * from posts", Posts.class).list();
 		return pList;
+	}
+	
+	public int getNextPostId() {
+		Query q = sessfact.openSession().createNativeQuery("select max(id) from social.posts");
+		return (int) q.getSingleResult();
 	}
 	
 	public Posts findById(Integer i) {

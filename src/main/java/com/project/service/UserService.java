@@ -22,12 +22,9 @@ public class UserService {
 	
 	@Autowired
 	private VerifyDao vdao;
-	
-	private EmailService es;
 
 	public UserService() {
 		super();
-		setEs(new EmailService());
 	}
 	
 	public UserService(UserDao udao) {
@@ -133,8 +130,7 @@ public class UserService {
 		}
 		while(test == false);
 		        
-		//once new code is generated, send an email with a link using that new code        
-		es.sendMail(email, "Welcome to Mochi Circle!", 
+		EmailService.sendMail(email, "Welcome to Mochi Circle!", 
 		       		"Have you had a mochi donut today? You better. Anyway, just click this link to validate your account: "
 		       		+ "<a href=\"http://localhost:8080/MochiCircle/api/verify/"+code+"\">http://localhost:8080/MochiCircle/api/verify/"+code+"</a>."
 		       				+ "<br/><br/>Thank you. I can't promise that we won't spam your email, but you know.");
@@ -179,7 +175,9 @@ public class UserService {
 		temp.setLastname(u.getLastname());
 		temp.setBio(u.getBio());
 		temp.setInterests(u.getInterests());
-		temp.setPicUrl(u.getPicUrl());
+		if(u.getPicUrl() != null) {
+			temp.setPicUrl(u.getPicUrl());
+		}
 
 		try {
 			return udao.update(temp);
@@ -190,21 +188,19 @@ public class UserService {
 		}
 	}
 	
-	public Users updateProfilePic(int id, String picurl) {
-		Users temp = udao.findById(id);
-		temp.setPicUrl(picurl);
-		
-		return udao.update(temp);
-	}
-	
 	public Users updateEmail(int id, String email) {
 		Users temp = udao.findById(id);
 		temp.setEmail(email);
 		
-		return udao.update(temp);
+		try {
+			return udao.update(temp);
+		} catch (Exception e) {
+			temp = new Users();
+			temp.setEmail("exception");
+			return temp;
+		}
 	}
 	
-
 	public Users updatePassword(int id, String password) {
 		Users temp = udao.findById(id);
 		temp.setPassword(password);
@@ -225,14 +221,6 @@ public class UserService {
 
 	public void setVdao(VerifyDao vdao) {
 		this.vdao = vdao;
-	}
-
-	public EmailService getEs() {
-		return es;
-	}
-
-	public void setEs(EmailService es) {
-		this.es = es;
 	}
 
 }

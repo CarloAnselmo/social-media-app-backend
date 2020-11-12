@@ -1,5 +1,6 @@
 package com.project.service;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,11 @@ public class PostService {
 		}
 		return temp;
 	}
+	
+	public int getNextPostId() {
+		return pdao.getNextPostId();
+	}
+
 	
 	public Posts savePosts(Posts t) {
 		return pdao.save(t);
