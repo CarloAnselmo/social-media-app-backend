@@ -28,7 +28,7 @@ import com.project.service.UserService;
 @RequestMapping("/users")
 @MultipartConfig
 public class UserController {
-
+	
 	private UserService us;
 	private S3Service s3s;
 

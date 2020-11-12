@@ -15,7 +15,7 @@ import com.project.repo.VerifyDao;
 
 @Service(value="userservice")
 public class UserService {
-
+	
 	@Autowired
 	private UserDao udao;
 	
