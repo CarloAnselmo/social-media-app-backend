@@ -21,12 +21,9 @@ public class UserService {
 	
 	@Autowired
 	private VerifyDao vdao;
-	
-	private EmailService es;
 
 	public UserService() {
 		super();
-		setEs(new EmailService());
 	}
 	
 	public UserService(UserDao udao) {
@@ -132,7 +129,7 @@ public class UserService {
 		}
 		while(test == false);
 		        
-		es.sendMail(email, "Welcome to Mochi Circle!", 
+		EmailService.sendMail(email, "Welcome to Mochi Circle!", 
 		       		"Have you had a mochi donut today? You better. Anyway, just click this link to validate your account: "
 		       		+ "<a>http://localhost:8080/api/users/verify/"+code+"</a>.");
 		       
@@ -160,13 +157,6 @@ public class UserService {
 			temp.setUsername("exception");
 			return temp;
 		}
-	}
-	
-	public Users updateProfilePic(int id, String picurl) {
-		Users temp = udao.findById(id);
-		temp.setPicUrl(picurl);
-		
-		return udao.update(temp);
 	}
 	
 	public Users updateEmail(int id, String email) {
@@ -202,14 +192,6 @@ public class UserService {
 
 	public void setVdao(VerifyDao vdao) {
 		this.vdao = vdao;
-	}
-
-	public EmailService getEs() {
-		return es;
-	}
-
-	public void setEs(EmailService es) {
-		this.es = es;
 	}
 
 }
