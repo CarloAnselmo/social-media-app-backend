@@ -82,10 +82,11 @@ public class PostController {
 	@PostMapping("/updatePhoto")
 	public @ResponseBody Posts savePostsWithPhoto(@RequestParam("userid") int userid, 
 			@RequestParam("postText") String postText, 
-			@RequestParam("image") MultipartFile image) {
+			@RequestParam(name ="image", required = false) MultipartFile image) {
 		String pic = null;
-		if(image.getContentType().contains("image")) {
-			pic = s3s.UploadAttachment(ps.getNextPostId(), image);
+		if(image != null) {
+			if(image.getContentType().contains("image"))
+				pic = s3s.UploadAttachment(ps.getNextPostId(), image);
 		}
 		return ps.savePosts(new Posts(0, postText, us.findUserNoPass(userid), null, pic));
 	}
