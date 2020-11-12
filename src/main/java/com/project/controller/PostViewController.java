@@ -49,5 +49,4 @@ public class PostViewController {
 		return pvs.getPostViewById(userid);
 	}
 	
-	
 }

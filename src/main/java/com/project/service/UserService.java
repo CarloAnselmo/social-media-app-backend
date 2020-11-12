@@ -5,9 +5,11 @@ import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Random;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project.aop.Loggers;
 import com.project.model.Users;
 import com.project.model.Verify;
 import com.project.repo.UserDao;
@@ -15,6 +17,8 @@ import com.project.repo.VerifyDao;
 
 @Service(value="userservice")
 public class UserService {
+	
+	final static Logger logger = Logger.getLogger(UserService.class);
 
 	@Autowired
 	private UserDao udao;
@@ -140,6 +144,7 @@ public class UserService {
 	/* ----------------------------------------- Updating user info ----------------------------------------- */
 	
 	public Users updateBasicInfo(Users u) {
+		logger.info("TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST");
 		Users temp = udao.findById(u.getId());
 		temp.setUsername(u.getUsername());
 		temp.setFirstname(u.getFirstname());
@@ -160,6 +165,7 @@ public class UserService {
 	}
 	
 	public Users updateEmail(int id, String email) {
+		logger.info("TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST");
 		Users temp = udao.findById(id);
 		temp.setEmail(email);
 		
@@ -173,6 +179,7 @@ public class UserService {
 	}
 	
 	public Users updatePassword(int id, String password) {
+		logger.info("TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST");
 		Users temp = udao.findById(id);
 		temp.setPassword(password);
 		

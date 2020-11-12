@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.annotation.MultipartConfig;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.project.aop.Loggers;
 import com.project.model.Users;
 import com.project.service.EmailService;
 import com.project.service.S3Service;
@@ -28,6 +30,8 @@ import com.project.service.UserService;
 @RequestMapping("/users")
 @MultipartConfig
 public class UserController {
+	
+	final static Logger logger = Logger.getLogger(UserController.class);
 
 	private UserService us;
 	private S3Service s3s;
