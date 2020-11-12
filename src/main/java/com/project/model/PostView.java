@@ -45,6 +45,9 @@ public class PostView implements Serializable{
 	
 	@Column(name="post_text")
 	String post_text;
+	
+	@Column(name="image")
+	String image;
 
 	public int getUserid() {
 		return userid;
@@ -85,15 +88,23 @@ public class PostView implements Serializable{
 	public void setPost_text(String post_text) {
 		this.post_text = post_text;
 	}
+	
+	public String getImage() {
+		return image;
+	}
 
+	public void setImage(String image) {
+		this.image = image;
+	}
 
-	public PostView(int userid, String username, String picurl, int id, String post_text) {
+	public PostView(int userid, String username, String picurl, int id, String post_text, String image) {
 		super();
 		this.userid = userid;
 		this.username = username;
 		this.picurl = picurl;
 		this.id = id;
 		this.post_text = post_text;
+		this.image = image;
 	}
 
 	public PostView() {
@@ -103,12 +114,7 @@ public class PostView implements Serializable{
 	@Override
 	public String toString() {
 		return "PostView [userid=" + userid + ", username=" + username + ", picurl=" + picurl + ", id=" + id
-				+ ", post_text=" + post_text + "]";
+				+ ", post_text=" + post_text + ", image=" + image + "]";
 	}
-
-
-	
-	
-	
 	
 }
