@@ -66,7 +66,6 @@ public class UserController {
 
 	@PostMapping("/validate")
 	public @ResponseBody Users validateUser(@RequestBody Map<String, String> json) {
-		
 		return us.validateLogin(json.get("username"), json.get("password"));
 	}
 	
@@ -85,27 +84,31 @@ public class UserController {
 		return us.updateUserStatus(userId, status);
 	}
 
-	@PostMapping("/updateBasic")
+	@PostMapping(value="/updateBasic")
 	public @ResponseBody Users updateBasicInfo(@RequestParam("userId") int userId,
-			@RequestParam("image") MultipartFile image, @RequestParam("username") String username,
+			@RequestParam(name="image", required=false) MultipartFile image, @RequestParam("username") String username,
 			@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName,
 			@RequestParam("bio") String bio, @RequestParam("interests") String interests) {
 		
 		String pic = "";
-		if (image.getContentType().contains("image")) {
+		Users temp = new Users();
+		
+		if(image==null) {
+			// Do nothing
+		} else if (image.getContentType().contains("image")) {
 			pic = s3s.UploadAvatar(userId, image);
+			temp.setPicUrl(pic);
 		}
 		
-		Users temp = new Users();
 		temp.setId((userId));
 		temp.setUsername(username);
 		temp.setFirstname(firstName);
 		temp.setLastname(lastName);
 		temp.setBio(bio);
 		temp.setInterests(interests);
-		temp.setPicUrl(pic);
 
 		Users removeRecursion = us.updateBasicInfo(temp);
+		removeRecursion.setPassword(null);
 		removeRecursion.setPosts(null);
 		removeRecursion.setLikedPosts(null);
 		return removeRecursion;

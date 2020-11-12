@@ -132,7 +132,6 @@ public class UserService {
 		}
 		while(test == false);
 		        
-		        
 		es.sendMail(email, "Welcome to Mochi Circle!", 
 		       		"Have you had a mochi donut today? You better. Anyway, just click this link to validate your account: "
 		       		+ "<a>http://localhost:8080/api/users/verify/"+code+"</a>.");
@@ -150,7 +149,9 @@ public class UserService {
 		temp.setLastname(u.getLastname());
 		temp.setBio(u.getBio());
 		temp.setInterests(u.getInterests());
-		temp.setPicUrl(u.getPicUrl());
+		if(u.getPicUrl() != null) {
+			temp.setPicUrl(u.getPicUrl());
+		}
 
 		try {
 			return udao.update(temp);
@@ -172,10 +173,15 @@ public class UserService {
 		Users temp = udao.findById(id);
 		temp.setEmail(email);
 		
-		return udao.update(temp);
+		try {
+			return udao.update(temp);
+		} catch (Exception e) {
+			temp = new Users();
+			temp.setEmail("exception");
+			return temp;
+		}
 	}
 	
-
 	public Users updatePassword(int id, String password) {
 		Users temp = udao.findById(id);
 		temp.setPassword(password);

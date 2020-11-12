@@ -12,10 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.model.Posts;
 import com.project.service.PostService;
-<<<<<<< HEAD
-=======
 import com.project.service.UserService;
->>>>>>> origin/main
 
 @Controller
 @CrossOrigin // Injects the header, allows requests from this origin. Can also use wildcards
@@ -23,10 +20,7 @@ import com.project.service.UserService;
 public class PostController {
 	
 	private PostService ps;
-<<<<<<< HEAD
-=======
 	private UserService us;
->>>>>>> origin/main
 
 	public PostController() {
 		super();
@@ -45,8 +39,6 @@ public class PostController {
 	@Autowired
 	public void setPs(PostService ps) {
 		this.ps = ps;
-<<<<<<< HEAD
-=======
 	}
 	
 	public UserService getUs() {
@@ -56,7 +48,6 @@ public class PostController {
 	@Autowired
 	public void setUs(UserService us) {
 		this.us = us;
->>>>>>> origin/main
 	}
 	
 	// Methods go here, remember to add mappings!
@@ -67,13 +58,8 @@ public class PostController {
 	
 	@GetMapping("update/{userid}+{post_text}")
 	public @ResponseBody Posts savePosts(@PathVariable int userid, @PathVariable String post_text) {
-<<<<<<< HEAD
-		return null;
-		//TODO implement creation of posts
-=======
 		Posts p = new Posts(0, post_text, us.findUserNoPass(userid), null);
 		ps.savePosts(p);
 		return p;
->>>>>>> origin/main
 	}
 }
