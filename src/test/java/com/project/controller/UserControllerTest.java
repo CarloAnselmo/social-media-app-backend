@@ -1,12 +1,13 @@
 package com.project.controller;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import javax.servlet.ServletContext;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,8 +20,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.project.controller.UserController;
-
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "/TestContext.xml")
@@ -32,7 +31,6 @@ public class UserControllerTest {
 	
 	private MockMvc mockMvc;
 	
-	
 	@Before
 	public void setUp(){
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
@@ -42,8 +40,8 @@ public class UserControllerTest {
 	public void configTest() {
 	    ServletContext servletContext = wac.getServletContext();
 	     
-	    Assert.assertNotNull(servletContext);
-	    Assert.assertTrue(servletContext instanceof MockServletContext);
+	    assertNotNull(servletContext);
+	    assertTrue(servletContext instanceof MockServletContext);
 	}
 	
 	@Test
