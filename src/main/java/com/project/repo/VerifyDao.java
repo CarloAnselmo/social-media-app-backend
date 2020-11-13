@@ -47,7 +47,6 @@ public class VerifyDao {
 		Session sess = sessfact.getCurrentSession();
 		try {
 			sess.save(v);
-			//sess.close();
 			return true;
 		}catch(Exception e)
 		{
@@ -60,7 +59,6 @@ public class VerifyDao {
 	public Verify update(Verify v) {
 		Session sess = sessfact.getCurrentSession();
 		sess.update(v);
-		//sess.close();
 		return v;
 	}
 	
