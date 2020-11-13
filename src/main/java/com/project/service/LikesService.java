@@ -51,4 +51,8 @@ public class LikesService {
 	public Likes deleteLikes(Likes t) {
 		return ld.delete(t);
 	}
+	
+	public List<Integer> findByUserId(int id) {
+		return ld.findByUserId(id);
+	}
 }

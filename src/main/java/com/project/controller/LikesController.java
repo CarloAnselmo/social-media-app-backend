@@ -55,6 +55,11 @@ public class LikesController {
 		return ls.getLikeStatus(user_id, post_id);
 	}
 	
+	@GetMapping("/findByUserId/{user_id}")
+	public @ResponseBody List<Integer> getLikeByUserId(@PathVariable int user_id) {
+		return ls.findByUserId(user_id);
+	}
+	
 	@GetMapping("update/{status}+{postid}+{userid}")
 	public @ResponseBody Likes updateLikeStatus(@PathVariable boolean status, @PathVariable int postid, @PathVariable int userid) {
 		Likes l = null;
