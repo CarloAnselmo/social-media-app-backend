@@ -26,11 +26,11 @@ public class PostViewDao {
 	}
 	
 	public List<PostView> findAll() {
-		return sessfact.openSession().createNativeQuery("select * from social.post_view order by social.post_view.id desc", PostView.class).list();
+		return sessfact.getCurrentSession().createNativeQuery("select * from social.post_view order by social.post_view.id desc", PostView.class).list();
 	}
 	
 	public List<PostView> findByUserId(int userid) {
-		Query<PostView> q = sessfact.openSession().createNativeQuery("select * from social.post_view where post_userid =?1 order by social.post_view.id desc", PostView.class);
+		Query<PostView> q = sessfact.getCurrentSession().createNativeQuery("select * from social.post_view where post_userid =?1 order by social.post_view.id desc", PostView.class);
 		q.setParameter(1, userid);
 		return q.getResultList();
 	}
