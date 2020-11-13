@@ -51,25 +51,19 @@ public class LikesDao {
 		
 		public Likes update(Likes t) {
 			Session sess = sessfact.getCurrentSession();
-			Transaction tx = sess.beginTransaction();
 			sess.update(t);
-			tx.commit();
 			return t;
 		}
 		
 		public Likes save(Likes t) {
 			Session sess = sessfact.getCurrentSession();
-			Transaction tx = sess.beginTransaction();
 			sess.save(t);
-			tx.commit();
 			return t;
 		}
 		
 		public Likes delete(Likes t) {
 			Session sess = sessfact.getCurrentSession();
-			Transaction tx = sess.beginTransaction();
 			sess.delete(t);
-			tx.commit();
 			return t;
 		}
 }
