@@ -1,5 +1,6 @@
 package com.project.service;
 
+import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
@@ -131,10 +132,38 @@ public class UserService {
 		        
 		EmailService.sendMail(email, "Welcome to Mochi Circle!", 
 		       		"Have you had a mochi donut today? You better. Anyway, just click this link to validate your account: "
-		       		+ "<a>http://localhost:8080/api/users/verify/"+code+"</a>.");
+		       		+ "<a href=\"http://localhost:8080/MochiCircle/api/verify/"+code+"\">http://localhost:8080/MochiCircle/api/verify/"+code+"</a>."
+		       				+ "<br/><br/>Thank you. I can't promise that we won't spam your email, but you know.");
 		       
-		//The above code should work
 		return temp;
+	}
+	
+	public String forgotPass(String email)
+	{
+		try {
+			//get user from their email
+			Users user = udao.findByEmail(email);
+			
+			//create new random password
+			Random rand = new Random();
+			String newPass = Integer.toString(rand.nextInt(1000000));
+			
+			//update user with new password
+			user.setPassword(newPass);
+			udao.update(user);
+			
+			//send email with their new random password inside it
+			EmailService.sendMail(email, "Here's your new temporary password!", 
+		       		"Have you had a mochi donut today? You better. Anyway, here is your temporary password: "
+					+ newPass);
+			
+			return "sent";
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+			return "not sent";
+		}
+		
 	}
 	
 	/* ----------------------------------------- Updating user info ----------------------------------------- */
