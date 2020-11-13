@@ -1,8 +1,14 @@
 package com.project.service;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
+import com.project.model.Users;
+import com.project.model.Verify;
 import com.project.repo.UserDao;
 import com.project.repo.VerifyDao;
 
@@ -22,16 +28,31 @@ public class VerifyService {
 	public String verifyUser(int code)
 	{
 		//check if the verification code exists in the db and if the used boolean is false
+		Verify testV = vdao.findByCode(code);
 		
-		//if used == false, then make it true...
+		System.out.println("test object:" + testV.toString());
+		//if used == false, then make that verify row == true..
+		if(testV != null)
+		{
+			Verify updatedVerify = new Verify(code, testV.getUserId(), true);
+			vdao.update(updatedVerify);
+			
+			// ...and update that particular user to be verified
+			Users verifUser = udao.findById(testV.getUserId());
+			verifUser.setVerified(true);
+			udao.update(verifUser);
+			
+			//redirect the user to the mochi site after processing
+			new RedirectView("http://localhost:3000/spin");
+			return "**User verified!**";
+		}
+		else
+		{
+			new RedirectView("http://localhost:3000/spin");
+			return "ERROR: Verification code has either been used or is invalid";
+		}
 		
-		//...and update that user to be verified
 		
-		//if used == true, then don't do anything
-		
-		//redirect the user to the mochi site after processing
-		
-		return "We good";
 	}
 	
 }

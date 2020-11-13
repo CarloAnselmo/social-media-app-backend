@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -65,18 +66,25 @@ public class UserController {
 		return us.findUserNoPass(id);
 	}
 
-	@PostMapping("/validate")
+	@PostMapping(value="/validate")
 	public @ResponseBody Users validateUser(@RequestBody Map<String, String> json) {
 		return us.validateLogin(json.get("username"), json.get("password"));
 	}
-
-	@PostMapping("/create")
-	public @ResponseBody Users createUser(@RequestBody Map<String, String> json) {
-		return us.createUser(json.get("username"), json.get("password"), json.get("firstname"), json.get("lastname"),
-				json.get("email"));
+	
+	@PostMapping(value="/forgot")
+	public @ResponseBody String forgotPassword(@RequestBody Map<String, String> json) {
+		
+		return us.forgotPass(json.get("email"));
+	}
+	
+	@RequestMapping(value="/create", method=RequestMethod.POST)
+	public @ResponseBody Users createUser(@RequestBody Map<String, String> json) 
+	{
+		return us.createUser(json.get("username"), json.get("password"), json.get("firstname"), 
+				json.get("lastname"), json.get("email"));
 	}
 
-	@PostMapping("/status")
+	@PostMapping(value="/status")
 	public @ResponseBody String updateStatus(@RequestBody Map<String, String> json) {
 		System.out.println(json);
 		int userId = Integer.parseInt(json.get("userId"));

@@ -44,7 +44,7 @@ public class PostViewController {
 		return pvs.getAllPostViews();
 	}
 	
-	@GetMapping("find/{userid}")
+	@GetMapping("/find/{userid}")
 	public @ResponseBody List<PostView> getById(@PathVariable int userid) {
 		return pvs.getPostViewById(userid);
 	}

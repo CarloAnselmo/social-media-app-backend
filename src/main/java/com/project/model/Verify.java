@@ -15,7 +15,7 @@ public class Verify {
 	@Column(nullable = false, unique = true)
 	private int userId;
 
-	@Column
+	@Column(name="used")
 	private boolean used;
 
 	public Verify(int code, int userId, boolean used) {
