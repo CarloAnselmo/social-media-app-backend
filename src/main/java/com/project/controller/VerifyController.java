@@ -16,7 +16,7 @@ import com.project.service.VerifyService;
 
 
 @Controller
-@CrossOrigin(origins="http://localhost:3000") // Injects the header, allows requests from this origin. Can also use wildcards
+@CrossOrigin // Injects the header, allows requests from this origin. Can also use wildcards
 @RequestMapping("/verify")
 @MultipartConfig
 public class VerifyController {
