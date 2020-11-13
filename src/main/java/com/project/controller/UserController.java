@@ -24,7 +24,7 @@ import com.project.service.S3Service;
 import com.project.service.UserService;
 
 @Controller
-@CrossOrigin(origins = "http://localhost:3000") // Injects the header, allows requests from this origin. Can also use
+@CrossOrigin // Injects the header, allows requests from this origin. Can also use
 												// wildcards
 @RequestMapping("/users")
 @MultipartConfig

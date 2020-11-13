@@ -29,12 +29,12 @@ public class PostDao {
 	}
 	
 	public List<Posts> findAll() {
-		List<Posts> pList = sessfact.openSession().createNativeQuery("select * from posts", Posts.class).list();
+		List<Posts> pList = sessfact.getCurrentSession().createNativeQuery("select * from posts", Posts.class).list();
 		return pList;
 	}
 	
 	public int getNextPostId() {
-		Query q = sessfact.openSession().createNativeQuery("select max(id) from social.posts");
+		Query q = sessfact.getCurrentSession().createNativeQuery("select max(id) from social.posts");
 		return (int) q.getSingleResult();
 	}
 	
@@ -49,18 +49,14 @@ public class PostDao {
 	}
 
 	public Posts save(Posts t) {
-		Session sess = sessfact.openSession();
-		Transaction tx = sess.beginTransaction();
+		Session sess = sessfact.getCurrentSession();
 		sess.persist(t);
-		tx.commit();
 		return t;
 	}
 
 	public Posts delete(Posts t) {
-		Session sess = sessfact.openSession();
-		Transaction tx = sess.beginTransaction();
+		Session sess = sessfact.getCurrentSession();
 		sess.delete(t);
-		tx.commit();
 		return t;
 	}
 
