@@ -60,14 +60,12 @@ public class UserDao {
 	public Users update(Users t) {
 		Session sess = sessfact.getCurrentSession();
 		sess.update(t);
-		//sess.close();
 		return t;
 	}
 	
 	public Users save(Users c) {
 		Session sess = sessfact.getCurrentSession();
 		sess.save(c);
-		//sess.close();
 		return c;
 	}
 	
