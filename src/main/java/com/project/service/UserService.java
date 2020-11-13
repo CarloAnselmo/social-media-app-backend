@@ -54,7 +54,6 @@ public class UserService {
 	public Users findUserNoPass(int id) {
 		Users temp = udao.findById(id);
 		temp.setEmail(null);
-		temp.setUsername(null);
 		temp.setPassword(null);
 		temp.setPosts(null);
 		temp.setLikedPosts(null);
