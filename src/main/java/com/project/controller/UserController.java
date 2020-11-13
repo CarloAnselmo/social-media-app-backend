@@ -61,8 +61,8 @@ public class UserController {
 		return us.getAllUsers();
 	}
 
-	@GetMapping("/find/{id}")
-	public @ResponseBody Users findUserNoPass(@PathVariable int id) {
+	@PostMapping("/find/{id}")
+	public @ResponseBody Users findUserNoPass(@PathVariable(value="id") int id) {
 		return us.findUserNoPass(id);
 	}
 
