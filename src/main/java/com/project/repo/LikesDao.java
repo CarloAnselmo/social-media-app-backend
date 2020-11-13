@@ -29,24 +29,28 @@ public class LikesDao {
 		}
 		
 		public List<Likes> findAll() {
-			return sessfact.openSession().createNativeQuery("select * from social.likes", Likes.class).list();
+			return sessfact.getCurrentSession().createNativeQuery("select * from social.likes", Likes.class).list();
 		}
 		
 		public BigInteger findCountByPostId(int post_id) {
-			Query q = sessfact.openSession().createNativeQuery("select count(likes.user_id) from social.likes where post_id = ?1");
+			Query q = sessfact.getCurrentSession().createNativeQuery("select count(likes.user_id) from social.likes where post_id = ?1");
 			q.setParameter(1, post_id);
 			return (BigInteger) q.getSingleResult();
 		}
 		
+		public List<Integer> findByUserId(int user_id) {
+			return sessfact.getCurrentSession().createNativeQuery("select post_id from social.likes where user_id = " + user_id).list();
+		}
+		
 		public BigInteger getLikeStatus(int user_id, int post_id) {
-			Query q = sessfact.openSession().createNativeQuery("select count(*) from social.likes where user_id = ?1 and post_id = ?2");
+			Query q = sessfact.getCurrentSession().createNativeQuery("select count(*) from social.likes where user_id = ?1 and post_id = ?2");
 			q.setParameter(1, user_id);
 			q.setParameter(2, post_id);
 			return  (BigInteger) q.getSingleResult();
 		}
 		
 		public Likes update(Likes t) {
-			Session sess = sessfact.openSession();
+			Session sess = sessfact.getCurrentSession();
 			Transaction tx = sess.beginTransaction();
 			sess.update(t);
 			tx.commit();
@@ -54,7 +58,7 @@ public class LikesDao {
 		}
 		
 		public Likes save(Likes t) {
-			Session sess = sessfact.openSession();
+			Session sess = sessfact.getCurrentSession();
 			Transaction tx = sess.beginTransaction();
 			sess.save(t);
 			tx.commit();
@@ -62,7 +66,7 @@ public class LikesDao {
 		}
 		
 		public Likes delete(Likes t) {
-			Session sess = sessfact.openSession();
+			Session sess = sessfact.getCurrentSession();
 			Transaction tx = sess.beginTransaction();
 			sess.delete(t);
 			tx.commit();
