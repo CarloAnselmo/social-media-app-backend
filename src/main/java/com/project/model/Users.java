@@ -47,6 +47,10 @@ public class Users {
 	
 	private String interests;
 	
+	@Column(name="verified")
+	private boolean verified;
+
+
 	// Relationship between users and posts
 	@OneToMany(mappedBy="users", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Posts> posts;
@@ -178,6 +182,14 @@ public Set<Posts> getLikedPosts() {
 
 public void setLikedPosts(Set<Posts> likedPosts) {
 	this.likedPosts = likedPosts;
+}
+
+public boolean isVerified() {
+	return verified;
+}
+
+public void setVerified(boolean verified) {
+	this.verified = verified;
 }
 
 @Override
