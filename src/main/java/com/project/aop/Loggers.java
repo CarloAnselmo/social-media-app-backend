@@ -34,7 +34,6 @@ public class Loggers {
     @Pointcut("within(@org.springframework.stereotype.Repository *)")
     public void repository() {
     }
-
 	
 	@Before("controller()")
 	public void controllerLogger(JoinPoint jp) {

@@ -60,6 +60,7 @@ public class VerifyDao {
 	public Verify update(Verify v) {
 		Session sess = sessfact.getCurrentSession();
 		sess.update(v);
+		//sess.close();
 		return v;
 	}
 	
