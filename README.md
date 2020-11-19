@@ -37,7 +37,7 @@ To-do list:
 7. Install Apache Tomcat (or equivalent) and run the project through localhost. See Apache documentation for more info.
 
 ## Contributors
-Carlo Anselmo
-Steven Chang
-Tucker Fritz
-Dylan McDonald
+- Carlo Anselmo
+- Steven Chang
+- Tucker Fritz
+- Dylan McDonald
