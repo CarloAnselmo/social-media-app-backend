@@ -35,3 +35,9 @@ To-do list:
 5. In the same file, edit line 54 in the .xml file to `<prop key="hibernate.hbm2ddl.auto">create</prop>`. Once the tables are created, change it back to `none`.
 6. Set up IAM credentials to access your own s3 bucket. (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html)
 7. Install Apache Tomcat (or equivalent) and run the project through localhost. See Apache documentation for more info.
+
+## Contributors
+Carlo Anselmo
+Steven Chang
+Tucker Fritz
+Dylan McDonald
