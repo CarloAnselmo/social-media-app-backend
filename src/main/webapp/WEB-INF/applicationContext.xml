@@ -36,9 +36,9 @@
 		<property name="driverClassName"
 			value="org.postgresql.Driver" />
 		<property name="url"
-			value="jdbc:postgresql://project0.c59oarwg7xwr.us-east-2.rds.amazonaws.com:5432/postgres" />
-		<property name="username" value="admi" />
-		<property name="password" value="secure" />
+			value=/>
+		<property name="username" value= />
+		<property name="password" value= />
 	</bean>
 
 	<!-- This is for hibernate configuration -->
