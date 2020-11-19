@@ -1,4 +1,4 @@
-For the front end, visit https://github.com/MochiCircle/social-media-app-frontend.
+For a more complete overview, visit https://github.com/MochiCircle/social-media-app-frontend.
 
 # Revature Social Network
 
